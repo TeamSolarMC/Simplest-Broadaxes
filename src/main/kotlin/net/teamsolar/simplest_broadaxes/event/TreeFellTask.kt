@@ -69,12 +69,12 @@ class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos, val s
                     }
                 }
                 (
-                        primaryTreeBlocks
-                                + leaves.filter(::isCloserToPrimaryTreeBlocks)
-                            .also{
-                                SimplestBroadaxes.LOGGER.info("Num leaves to actually mine: ${it.size}")
-                            }
-                        ).toMutableList()
+                    primaryTreeBlocks
+                    + leaves.filter(::isCloserToPrimaryTreeBlocks)
+                        .also{
+                            SimplestBroadaxes.LOGGER.info("Num leaves to actually mine: ${it.size}")
+                        }
+                ).toMutableList()
             }
         }
     }
