@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
 import net.neoforged.neoforge.common.conditions.IConditionBuilder
-import net.teamsolar.simplest_broadaxes.SimpestBroadaxes
+import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import net.teamsolar.simplest_broadaxes.item.ModItems
 import net.teamsolar.simplest_broadaxes.item.ModItems.BROADAXE_SMITHING_TEMPLATE
 import java.util.concurrent.CompletableFuture
@@ -127,7 +127,7 @@ class ModRecipeProvider(packOutput: PackOutput, lookupProvider: CompletableFutur
             .save(
                 output,
                 ResourceLocation.fromNamespaceAndPath(
-                    SimpestBroadaxes.MODID,
+                    SimplestBroadaxes.MODID,
                     stripNamespace(outputItem.toString()) + "_from_pickaxe"
                 )
             )
@@ -145,7 +145,7 @@ class ModRecipeProvider(packOutput: PackOutput, lookupProvider: CompletableFutur
             .save(
                 output,
                 ResourceLocation.fromNamespaceAndPath(
-                    SimpestBroadaxes.MODID,
+                    SimplestBroadaxes.MODID,
                     stripNamespace(outputItem.toString()) + "_from_upgrade"
                 )
             )

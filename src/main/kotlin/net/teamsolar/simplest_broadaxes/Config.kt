@@ -1,9 +1,6 @@
 package net.teamsolar.simplest_broadaxes
 
 import net.minecraft.client.gui.screens.Screen
-import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.Item
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.EventBusSubscriber
@@ -11,11 +8,10 @@ import net.neoforged.fml.event.config.ModConfigEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.client.gui.ConfigurationScreen
 import net.neoforged.neoforge.common.ModConfigSpec
-import java.util.stream.Collectors
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
-@EventBusSubscriber(modid = SimpestBroadaxes.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = SimplestBroadaxes.MODID, bus = EventBusSubscriber.Bus.MOD)
 object Config {
     private val BUILDER: ModConfigSpec.Builder = ModConfigSpec.Builder()
 

@@ -10,11 +10,11 @@ import net.minecraft.world.item.Tiers
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
-import net.teamsolar.simplest_broadaxes.SimpestBroadaxes
+import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import java.util.function.Supplier
 
 object ModItems {
-    val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(SimpestBroadaxes.MODID)
+    val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(SimplestBroadaxes.MODID)
 
     // Hammer durability will be 3x the durability of the vanilla pickaxe of the same tier.
     /*
@@ -86,10 +86,10 @@ object ModItems {
                 // Base slot empty icons
                 listOf<ResourceLocation>(
                     ResourceLocation.withDefaultNamespace("item/empty_slot_pickaxe"),
-                    ResourceLocation.fromNamespaceAndPath(SimpestBroadaxes.MODID, "item/empty_slot_broadaxe")
+                    ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, "item/empty_slot_broadaxe")
                 ),
                 listOf<ResourceLocation>(
-                    ResourceLocation.fromNamespaceAndPath(SimpestBroadaxes.MODID, "item/empty_slot_block")
+                    ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, "item/empty_slot_block")
                 ) // Additional slot empty icons
             )
         }

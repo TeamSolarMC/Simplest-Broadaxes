@@ -21,8 +21,8 @@ import net.teamsolar.simplest_broadaxes.item.ModItems
 import net.teamsolar.simplest_broadaxes.loot.ModLootModifiers
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(SimpestBroadaxes.MODID)
-class SimpestBroadaxes {
+@Mod(SimplestBroadaxes.MODID)
+class SimplestBroadaxes {
     companion object {
         // Define mod id in a common place for everything to reference
         const val MODID = "simplest_broadaxes"

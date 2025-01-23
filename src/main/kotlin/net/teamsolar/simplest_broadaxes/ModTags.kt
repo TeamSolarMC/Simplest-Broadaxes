@@ -17,7 +17,7 @@ object ModTags {
         val NEEDS_NETHERITE_TOOL: TagKey<Block> = tag("needs_netherite_tool")
 
         private fun tag(name: String): TagKey<Block> {
-            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(SimpestBroadaxes.MODID, name))
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, name))
         }
 
         private fun forgeTag(name: String): TagKey<Block> {
@@ -29,7 +29,7 @@ object ModTags {
         val BROADAXES: TagKey<Item> = forgeTag("broadaxes")
 
         private fun tag(name: String): TagKey<Item> {
-            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(SimpestBroadaxes.MODID, name))
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, name))
         }
 
         private fun forgeTag(name: String): TagKey<Item> {

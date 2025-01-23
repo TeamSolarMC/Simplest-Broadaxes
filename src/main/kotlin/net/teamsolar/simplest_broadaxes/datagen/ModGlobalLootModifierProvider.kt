@@ -8,13 +8,13 @@ import net.minecraft.world.level.storage.loot.BuiltInLootTables
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider
 import net.neoforged.neoforge.common.loot.LootTableIdCondition
-import net.teamsolar.simplest_broadaxes.SimpestBroadaxes
+import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import net.teamsolar.simplest_broadaxes.item.ModItems
 import net.teamsolar.simplest_broadaxes.loot.ModLootModifier
 import java.util.concurrent.CompletableFuture
 
 class ModGlobalLootModifierProvider(output: PackOutput, completableFuture: CompletableFuture<HolderLookup.Provider?>) :
-    GlobalLootModifierProvider(output, completableFuture, SimpestBroadaxes.MODID) {
+    GlobalLootModifierProvider(output, completableFuture, SimplestBroadaxes.MODID) {
     override fun start() {
         val template = ModItems.BROADAXE_SMITHING_TEMPLATE.get()
         add(

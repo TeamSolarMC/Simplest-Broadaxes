@@ -14,7 +14,7 @@ import net.minecraft.world.level.storage.loot.LootParams
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.Vec3
 import net.teamsolar.simplest_broadaxes.Config
-import net.teamsolar.simplest_broadaxes.SimpestBroadaxes
+import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import net.teamsolar.simplest_broadaxes.item.BroadaxeItem
 
 class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos, val secondaryMineableBlocks: TagKey<Block>): MyLevelTickEvent.BroadaxeTask(level, player, position) {
@@ -42,15 +42,15 @@ class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos, val s
         } else {
             val treeBlocks = filterBlocksTagged(blocks) {it.`is`(mineableBlocks)}
             val primaryTreeBlocks = getBlocksTagged(start = position.offset(0, 1, 0), ignore = position, selectedTags = listOf(mineableBlocks))
-            SimpestBroadaxes.LOGGER.info("Num primary tree blocks: ${primaryTreeBlocks.size}")
+            SimplestBroadaxes.LOGGER.info("Num primary tree blocks: ${primaryTreeBlocks.size}")
             if(primaryTreeBlocks.any { blockPos -> blockPos.y <= position.y }) {
                 mutableListOf()
             } else {
                 val nonPrimaryTreeBlocks = treeBlocks.minus(primaryTreeBlocks.toSet())
                 val leaves = filterBlocksTagged(blocks) {it.`is`(secondaryMineableBlocks)}
 
-                SimpestBroadaxes.LOGGER.info("Num non-primary tree blocks: ${nonPrimaryTreeBlocks.size}")
-                SimpestBroadaxes.LOGGER.info("Num leaves: ${leaves.size}")
+                SimplestBroadaxes.LOGGER.info("Num non-primary tree blocks: ${nonPrimaryTreeBlocks.size}")
+                SimplestBroadaxes.LOGGER.info("Num leaves: ${leaves.size}")
                 fun isCloserToPrimaryTreeBlocks(blockPos: BlockPos): Boolean {
                     val distance1: Double? = primaryTreeBlocks.minOfOrNull { blockPos.distSqr(it) }
                     val distance2: Double? = nonPrimaryTreeBlocks.minOfOrNull { blockPos.distSqr(it) }
@@ -72,7 +72,7 @@ class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos, val s
                         primaryTreeBlocks
                                 + leaves.filter(::isCloserToPrimaryTreeBlocks)
                             .also{
-                                SimpestBroadaxes.LOGGER.info("Num leaves to actually mine: ${it.size}")
+                                SimplestBroadaxes.LOGGER.info("Num leaves to actually mine: ${it.size}")
                             }
                         ).toMutableList()
             }
@@ -127,7 +127,7 @@ class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos, val s
 
     var taskProgress = 0
     override fun progress() {
-        SimpestBroadaxes.LOGGER.info("Broadaxe Task ($position) progress: $taskProgress (${blocksToMine.size} remaining blocks)")
+        SimplestBroadaxes.LOGGER.info("Broadaxe Task ($position) progress: $taskProgress (${blocksToMine.size} remaining blocks)")
         taskProgress = 0
         val listOfItemsToMove = mutableListOf<ItemStack>()
         while(taskProgress < blocksPerTick && blocksToMine.isNotEmpty()) {

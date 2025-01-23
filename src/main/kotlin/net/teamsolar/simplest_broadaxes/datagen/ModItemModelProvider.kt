@@ -6,7 +6,7 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 import net.neoforged.neoforge.registries.DeferredItem
-import net.teamsolar.simplest_broadaxes.SimpestBroadaxes
+import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import net.teamsolar.simplest_broadaxes.item.ModItems.BROADAXE_SMITHING_TEMPLATE
 import net.teamsolar.simplest_broadaxes.item.ModItems.DIAMOND_BROADAXE
 import net.teamsolar.simplest_broadaxes.item.ModItems.GOLDEN_BROADAXE
@@ -16,7 +16,7 @@ import net.teamsolar.simplest_broadaxes.item.ModItems.STONE_BROADAXE
 import net.teamsolar.simplest_broadaxes.item.ModItems.WOODEN_BROADAXE
 
 class ModItemModelProvider(output: PackOutput, existingFileHelper: ExistingFileHelper) :
-    ItemModelProvider(output, SimpestBroadaxes.MODID, existingFileHelper) {
+    ItemModelProvider(output, SimplestBroadaxes.MODID, existingFileHelper) {
     override fun registerModels() {
         handheldItem(WOODEN_BROADAXE)
         handheldItem(STONE_BROADAXE)
