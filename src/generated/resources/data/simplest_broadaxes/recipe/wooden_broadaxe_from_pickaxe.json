@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "minecraft:logs"
+  },
+  "base": {
+    "item": "minecraft:wooden_axe"
+  },
+  "result": {
+    "count": 1,
+    "id": "simplest_broadaxes:wooden_broadaxe"
+  },
+  "template": {
+    "item": "simplest_broadaxes:broadaxe_smithing_template"
+  }
+}

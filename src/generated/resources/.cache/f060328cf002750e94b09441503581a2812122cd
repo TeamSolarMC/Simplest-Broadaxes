@@ -1,0 +1,8 @@
+// 1.21.1	2025-01-22T19:44:17.6063694	Item Models: simplest_broadaxes
+56d104d51ef732905480fc411495b87423c4b20a assets/simplest_broadaxes/models/item/broadaxe_smithing_template.json
+d8aeecd6e38b9c5dd07a1779cf3e1c0889d3c6ca assets/simplest_broadaxes/models/item/diamond_broadaxe.json
+e935442d9892def5d7b6c830861dca08fd26f8c3 assets/simplest_broadaxes/models/item/golden_broadaxe.json
+cfba881b0a8e549e04e2f61cae8740f3dd996be8 assets/simplest_broadaxes/models/item/iron_broadaxe.json
+2db0163cc39c22519f10634ba18518f470163ecd assets/simplest_broadaxes/models/item/netherite_broadaxe.json
+9a55e79a6bab93335e711d13deb9f06fce01ad17 assets/simplest_broadaxes/models/item/stone_broadaxe.json
+617040174a4091d77b354529dd66b4b5d84bd0f2 assets/simplest_broadaxes/models/item/wooden_broadaxe.json

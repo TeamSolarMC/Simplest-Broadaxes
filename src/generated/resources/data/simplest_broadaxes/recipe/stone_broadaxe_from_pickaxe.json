@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:smooth_stone"
+  },
+  "base": {
+    "item": "minecraft:stone_axe"
+  },
+  "result": {
+    "count": 1,
+    "id": "simplest_broadaxes:stone_broadaxe"
+  },
+  "template": {
+    "item": "simplest_broadaxes:broadaxe_smithing_template"
+  }
+}

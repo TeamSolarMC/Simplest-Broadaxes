@@ -29,12 +29,12 @@ object ModItems {
             )
         }
      */
-    fun broadaxeSupplier(tier: Tier, durability: Int, attackSpeed: Float, attackDamageModifier: Float, additional: ((Item.Properties) -> Item.Properties)? = null) = Supplier<BroadaxeItem> {
+    fun broadaxeSupplier(tier: Tier, durability: Int, attackDamageModifier: Float, attackSpeed: Float, additional: ((Item.Properties) -> Item.Properties)? = null) = Supplier<BroadaxeItem> {
         BroadaxeItem(
             tier,
             Item.Properties().durability(durability).attributes(
                 DiggerItemWithoutDurability.createAttributes(
-                    tier, attackSpeed, attackDamageModifier
+                    tier, attackDamageModifier, attackSpeed
                 )
             ).let{
                 if(additional != null) {
@@ -47,27 +47,27 @@ object ModItems {
     }
     val WOODEN_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
         "wooden_broadaxe",
-        broadaxeSupplier(Tiers.WOOD, durability =  177, attackSpeed = 6.0f, attackDamageModifier = -3.4f)
+        broadaxeSupplier(Tiers.WOOD, durability =  177, attackDamageModifier = 7.0f, attackSpeed = -3.4f)
     )
     val STONE_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
         "stone_broadaxe",
-        broadaxeSupplier(Tiers.STONE, durability =  393, attackSpeed = 7.0f, attackDamageModifier = -3.4f)
+        broadaxeSupplier(Tiers.STONE, durability = 393, attackDamageModifier = 8.0f, attackSpeed = -3.4f)
     )
     val IRON_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
         "iron_broadaxe",
-        broadaxeSupplier(Tiers.IRON, durability =  750, attackSpeed = 6.0f, attackDamageModifier = -3.3f)
+        broadaxeSupplier(Tiers.IRON, durability = 750, attackDamageModifier = 8.0f, attackSpeed = -3.3f)
     )
     val GOLDEN_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
         "golden_broadaxe",
-        broadaxeSupplier(Tiers.GOLD, durability =  96, attackSpeed = 6.0f, attackDamageModifier = -3.2f)
+        broadaxeSupplier(Tiers.GOLD, durability = 96, attackDamageModifier = 7.0f, attackSpeed = -3.2f)
     )
     val DIAMOND_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
         "diamond_broadaxe",
-        broadaxeSupplier(Tiers.DIAMOND, durability = 4683, attackSpeed = 5.0f, attackDamageModifier = -3.2f)
+        broadaxeSupplier(Tiers.DIAMOND, durability = 4683, attackDamageModifier = 6.0f, attackSpeed = -3.2f)
     )
     val NETHERITE_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
         "netherite_broadaxe",
-        broadaxeSupplier(Tiers.NETHERITE, durability = 6093, attackSpeed = 5.0f, attackDamageModifier = -3.2f) {
+        broadaxeSupplier(Tiers.NETHERITE, durability = 6093, attackDamageModifier = 6.0f, attackSpeed = -3.2f) {
             it.fireResistant()
         }
     )
