@@ -46,8 +46,8 @@ class TreeFellAndTrimTask(level: Level, player: ServerPlayer, position: BlockPos
                     return
                 }
             } else {
-                return
+                return super.damageBroadaxeIfEquipped(blockState)
             }
-        } ?: return
+        } ?: return super.damageBroadaxeIfEquipped(blockState)
     }
 }
