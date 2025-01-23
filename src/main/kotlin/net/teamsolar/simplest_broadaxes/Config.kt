@@ -39,7 +39,6 @@ object Config {
 
     val SPEC: ModConfigSpec = BUILDER.build()
 
-    var broadaxeMiningSpeedModifier: Double = 0.5
     var broadaxeBlocksPerTick: Int = 64
     var broadaxeBlocksPerSwing: Int = 1000
     var dropsFelledBlocks: Boolean = true
@@ -52,7 +51,6 @@ object Config {
 
     @SubscribeEvent
     fun onLoad(event: ModConfigEvent) {
-        broadaxeMiningSpeedModifier = BROADAXE_MINING_SPEED_MODIFIER.get()
         broadaxeBlocksPerTick = BROADAXE_BLOCKS_PER_TICK.get()
         broadaxeBlocksPerSwing = BROADAXE_BLOCKS_PER_SWING.get()
         dropsFelledBlocks = DROPS_FELLED_BLOCKS.get()

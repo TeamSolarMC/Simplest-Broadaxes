@@ -39,8 +39,10 @@ class BroadaxeItem(tier: Tier, properties: Properties) : DiggerItemWithoutDurabi
         }
     }
 
+    val miningSpeedModifier = 0.4f
+
     override fun getDestroySpeed(stack: ItemStack, state: BlockState): Float {
-        return super.getDestroySpeed(stack, state) * Config.broadaxeMiningSpeedModifier.toFloat()
+        return super.getDestroySpeed(stack, state) * miningSpeedModifier
     }
 
     fun getMineableBlocks(stack: ItemStack): TagKey<Block> {
