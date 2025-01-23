@@ -13,6 +13,8 @@
   "item.simplest_broadaxes.broadaxe_smithing_template.base_slot_description": "Add a broadaxe or an axe",
   "item.simplest_broadaxes.broadaxe_smithing_template.additions_slot_description": "Add an appropriate material block",
 
+  "enchantment.simplest_broadaxes.trimming": "Trimming",
+
   "simplest_broadaxes.configuration.broadaxeBlocksPerTick": "Blocks felled per tick",
   "simplest_broadaxes.configuration.broadaxeBlocksPerSwing": "Blocks felled per swing",
   "simplest_broadaxes.configuration.dropsFelledBlocks": "Drops felled blocks"
