@@ -29,65 +29,65 @@ class ModRecipeProvider(packOutput: PackOutput, lookupProvider: CompletableFutur
             .define('A', Items.EMERALD)
             .define('B', BROADAXE_SMITHING_TEMPLATE.get())
             .define('C', Items.COBBLESTONE)
-            .unlockedBy("has_hammer_template", hasInInventory(BROADAXE_SMITHING_TEMPLATE))
+            .unlockedBy("has_broadaxe_template", hasInInventory(BROADAXE_SMITHING_TEMPLATE))
             .save(output)
         
-        hammerSmithingRecipe(
-            Ingredient.of(Items.WOODEN_PICKAXE),
+        broadaxeSmithingRecipe(
+            Ingredient.of(Items.WOODEN_AXE),
             Ingredient.of(ItemTags.LOGS),
             ModItems.WOODEN_BROADAXE.get(),
             output
         )
-        hammerSmithingRecipe(
-            Ingredient.of(Items.STONE_PICKAXE),
+        broadaxeSmithingRecipe(
+            Ingredient.of(Items.STONE_AXE),
             Ingredient.of(Items.SMOOTH_STONE),
             ModItems.STONE_BROADAXE.get(),
             output
         )
-        hammerSmithingRecipe(
-            Ingredient.of(Items.IRON_PICKAXE),
+        broadaxeSmithingRecipe(
+            Ingredient.of(Items.IRON_AXE),
             Ingredient.of(Items.IRON_BLOCK.asItem()),
             ModItems.IRON_BROADAXE.get(),
             output
         )
-        hammerSmithingRecipe(
-            Ingredient.of(Items.GOLDEN_PICKAXE),
+        broadaxeSmithingRecipe(
+            Ingredient.of(Items.GOLDEN_AXE),
             Ingredient.of(Items.GOLD_BLOCK),
             ModItems.GOLDEN_BROADAXE.get(),
             output
         )
-        hammerSmithingRecipe(
-            Ingredient.of(Items.DIAMOND_PICKAXE),
+        broadaxeSmithingRecipe(
+            Ingredient.of(Items.DIAMOND_AXE),
             Ingredient.of(Items.DIAMOND_BLOCK),
             ModItems.DIAMOND_BROADAXE.get(),
             output
         )
-        hammerSmithingRecipe(
-            Ingredient.of(Items.NETHERITE_PICKAXE),
+        broadaxeSmithingRecipe(
+            Ingredient.of(Items.NETHERITE_AXE),
             Ingredient.of(Items.DIAMOND_BLOCK),
             ModItems.NETHERITE_BROADAXE.get(),
             output
         )
         // Upgrades
-        hammerUpgradeRecipe(
+        broadaxeUpgradeRecipe(
             Ingredient.of(ModItems.WOODEN_BROADAXE.get()),
             Ingredient.of(Items.SMOOTH_STONE),
             ModItems.STONE_BROADAXE.get(),
             output
         )
-        hammerUpgradeRecipe(
+        broadaxeUpgradeRecipe(
             Ingredient.of(ModItems.STONE_BROADAXE.get()),
             Ingredient.of(Items.IRON_BLOCK),
             ModItems.IRON_BROADAXE.get(),
             output
         )
-        hammerUpgradeRecipe(
+        broadaxeUpgradeRecipe(
             Ingredient.of(ModItems.IRON_BROADAXE.get()),
             Ingredient.of(Items.GOLD_BLOCK),
             ModItems.GOLDEN_BROADAXE.get(),
             output
         )
-        hammerUpgradeRecipe(
+        broadaxeUpgradeRecipe(
             Ingredient.of(ModItems.GOLDEN_BROADAXE.get()),
             Ingredient.of(Items.DIAMOND_BLOCK),
             ModItems.DIAMOND_BROADAXE.get(),
@@ -115,7 +115,7 @@ class ModRecipeProvider(packOutput: PackOutput, lookupProvider: CompletableFutur
         return ""
     }
 
-    private fun hammerSmithingRecipe(base: Ingredient, additional: Ingredient, outputItem: Item, output: RecipeOutput) {
+    private fun broadaxeSmithingRecipe(base: Ingredient, additional: Ingredient, outputItem: Item, output: RecipeOutput) {
         SmithingTransformRecipeBuilder.smithing(
             Ingredient.of(ModItems.BROADAXE_SMITHING_TEMPLATE.get()),  // ModItems.BROADAXE_SMITHING_TEMPLATE.get(),
             base,
@@ -123,7 +123,7 @@ class ModRecipeProvider(packOutput: PackOutput, lookupProvider: CompletableFutur
             RecipeCategory.TOOLS,
             outputItem
         )
-            .unlocks("has_hammer_template", hasInInventory(ModItems.BROADAXE_SMITHING_TEMPLATE.get()))
+            .unlocks("has_broadaxe_template", hasInInventory(ModItems.BROADAXE_SMITHING_TEMPLATE.get()))
             .save(
                 output,
                 ResourceLocation.fromNamespaceAndPath(
@@ -133,7 +133,7 @@ class ModRecipeProvider(packOutput: PackOutput, lookupProvider: CompletableFutur
             )
     }
 
-    private fun hammerUpgradeRecipe(base: Ingredient, additional: Ingredient, outputItem: Item, output: RecipeOutput) {
+    private fun broadaxeUpgradeRecipe(base: Ingredient, additional: Ingredient, outputItem: Item, output: RecipeOutput) {
         SmithingTransformRecipeBuilder.smithing(
             Ingredient.of(ModItems.BROADAXE_SMITHING_TEMPLATE.get()),  // ModItems.BROADAXE_SMITHING_TEMPLATE.get(),
             base,
@@ -141,7 +141,7 @@ class ModRecipeProvider(packOutput: PackOutput, lookupProvider: CompletableFutur
             RecipeCategory.TOOLS,
             outputItem
         )
-            .unlocks("has_hammer_template", hasInInventory(ModItems.BROADAXE_SMITHING_TEMPLATE.get()))
+            .unlocks("has_broadaxe_template", hasInInventory(ModItems.BROADAXE_SMITHING_TEMPLATE.get()))
             .save(
                 output,
                 ResourceLocation.fromNamespaceAndPath(

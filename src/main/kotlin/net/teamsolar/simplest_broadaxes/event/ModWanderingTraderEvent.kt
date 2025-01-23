@@ -11,18 +11,17 @@ import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.neoforge.event.village.WandererTradesEvent
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
-import net.teamsolar.simplest_broadaxes.SimplestBroadaxes.Companion.LOGGER
-import net.teamsolar.simplest_broadaxes.item.ModItems.BROADAXE_SMITHING_TEMPLATE
+import net.teamsolar.simplest_broadaxes.item.ModItems
 
 @EventBusSubscriber(modid = SimplestBroadaxes.MODID)
 object ModWanderingTraderEvent {
     @SubscribeEvent
     fun wanderingVillagerTrade(event: WandererTradesEvent) {
-        LOGGER.info("Wandering trader event")
+        SimplestBroadaxes.LOGGER.info("Wandering trader event")
         event.rareTrades.add(ItemListing { pTrader: Entity?, pRandom: RandomSource? ->
             MerchantOffer(
                 ItemCost(Items.EMERALD, 12),
-                ItemStack(BROADAXE_SMITHING_TEMPLATE.get(), 1),
+                ItemStack(ModItems.BROADAXE_SMITHING_TEMPLATE.get(), 1),
                 1, 2, 0.2f
             )
         })

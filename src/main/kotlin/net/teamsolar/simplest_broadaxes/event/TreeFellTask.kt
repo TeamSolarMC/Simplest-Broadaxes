@@ -17,7 +17,7 @@ import net.teamsolar.simplest_broadaxes.Config
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import net.teamsolar.simplest_broadaxes.item.BroadaxeItem
 
-class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos, val secondaryMineableBlocks: TagKey<Block>): MyLevelTickEvent.BroadaxeTask(level, player, position) {
+class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos, val secondaryMineableBlocks: TagKey<Block>): ModLevelTickEvent.BroadaxeTask(level, player, position) {
     // 1. Collect up to 1000 adjacent blocks
     // and ignore any non-log blocks
     // 2. Don't cut down any additional blocks if it is not a root

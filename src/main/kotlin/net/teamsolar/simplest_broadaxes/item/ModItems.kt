@@ -85,7 +85,7 @@ object ModItems {
                 Component.translatable("item.simplest_broadaxes.broadaxe_smithing_template.additions_slot_description"),  // No formatting
                 // Base slot empty icons
                 listOf<ResourceLocation>(
-                    ResourceLocation.withDefaultNamespace("item/empty_slot_pickaxe"),
+                    ResourceLocation.withDefaultNamespace("item/empty_slot_axe"),
                     ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, "item/empty_slot_broadaxe")
                 ),
                 listOf<ResourceLocation>(

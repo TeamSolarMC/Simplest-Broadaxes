@@ -7,7 +7,7 @@ import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.neoforge.event.tick.LevelTickEvent
 
 // Only used on the server
-class MyLevelTickEvent {
+class ModLevelTickEvent {
     val queuedBroadaxeTasks = mutableMapOf<Level, TaskLevelContainer<BroadaxeTask>>()
     class TaskLevelContainer<T: Task> {
         val list = mutableListOf<T>()

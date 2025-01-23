@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
 import net.teamsolar.simplest_broadaxes.Config
 import net.teamsolar.simplest_broadaxes.ModBlockTags
-import net.teamsolar.simplest_broadaxes.event.MyLevelTickEvent
+import net.teamsolar.simplest_broadaxes.event.ModLevelTickEvent
 import net.teamsolar.simplest_broadaxes.event.TreeFellTask
 
 
@@ -48,7 +48,7 @@ class BroadaxeItem(tier: Tier, properties: Properties) : DiggerItemWithoutDurabi
     }
 
     companion object {
-        val tickEvent = MyLevelTickEvent()
+        val tickEvent = ModLevelTickEvent()
         val mineableBlocks: TagKey<Block> = ModBlockTags.FELLABLE_BLOCK
     }
 }

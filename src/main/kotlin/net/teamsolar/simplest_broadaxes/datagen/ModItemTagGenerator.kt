@@ -31,6 +31,7 @@ class ModItemTagGenerator(
         tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).addTag(ModTags.Items.BROADAXES)
         tag(ItemTags.MINING_ENCHANTABLE).addTag(ModTags.Items.BROADAXES)
         tag(ItemTags.MINING_LOOT_ENCHANTABLE).addTag(ModTags.Items.BROADAXES)
+        tag(ItemTags.DURABILITY_ENCHANTABLE).addTag(ModTags.Items.BROADAXES)
     }
 
     override fun getName(): String {
