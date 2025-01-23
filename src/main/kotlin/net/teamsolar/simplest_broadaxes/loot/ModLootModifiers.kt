@@ -12,10 +12,10 @@ object ModLootModifiers {
     val GLOBAL_LOOT_MODIFIER_SERIALIZERS: DeferredRegister<MapCodec<out IGlobalLootModifier?>> =
         DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, SimplestBroadaxes.MODID)
 
-    val MY_LOOT_MODIFIER: Supplier<MapCodec<ModLootModifier>> =
-        GLOBAL_LOOT_MODIFIER_SERIALIZERS.register<MapCodec<ModLootModifier>>(
+    val MY_LOOT_MODIFIER: Supplier<MapCodec<ChestLootModifier>> =
+        GLOBAL_LOOT_MODIFIER_SERIALIZERS.register<MapCodec<ChestLootModifier>>(
             "my_loot_modifier",
-            Supplier { ModLootModifier.CODEC })
+            Supplier { ChestLootModifier.CODEC })
 
 
     fun register(eventBus: IEventBus) {

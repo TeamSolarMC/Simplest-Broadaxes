@@ -7,8 +7,8 @@ import net.minecraft.world.level.block.Blocks
 import net.neoforged.neoforge.common.data.BlockTagsProvider
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
-import net.teamsolar.simplest_broadaxes.ModBlockTags.FELLABLE_BLOCK
-import net.teamsolar.simplest_broadaxes.ModBlockTags.SECONDARY_FELLABLE_BLOCK
+import net.teamsolar.simplest_broadaxes.ModTagBlocks.FELLABLE_BLOCK
+import net.teamsolar.simplest_broadaxes.ModTagBlocks.SECONDARY_FELLABLE_BLOCK
 import java.util.concurrent.CompletableFuture
 
 class ModBlockTagGenerator(
@@ -22,14 +22,17 @@ class ModBlockTagGenerator(
             .add(
                 Blocks.MUSHROOM_STEM,
                 Blocks.CHORUS_FLOWER,
-                Blocks.CHORUS_PLANT
+                Blocks.CHORUS_PLANT,
+                Blocks.MANGROVE_ROOTS
             )
         tag(SECONDARY_FELLABLE_BLOCK)
             .add(
                 Blocks.BROWN_MUSHROOM_BLOCK,
                 Blocks.RED_MUSHROOM_BLOCK,
-                Blocks.SHROOMLIGHT
+                Blocks.SHROOMLIGHT,
+                Blocks.BEE_NEST
             )
+            .addTag(BlockTags.LEAVES)
             .addTag(BlockTags.WART_BLOCKS)
         // ?
     }

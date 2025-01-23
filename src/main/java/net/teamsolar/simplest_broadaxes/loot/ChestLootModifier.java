@@ -11,26 +11,26 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.loot.LootModifier;
 
 // When applied, adds 1 item (specified by the constructor) to village toolsmith chests with a count of 1.
-public class ModLootModifier extends LootModifier {
+public class ChestLootModifier extends LootModifier {
     // See below for how the codec works.
-    public static final MapCodec<ModLootModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
+    public static final MapCodec<ChestLootModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             // LootModifier#codecStart adds the conditions field.
             LootModifier.codecStart(inst).and(
                     BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(e -> e.item)
-            ).apply(inst, ModLootModifier::new)
+            ).apply(inst, ChestLootModifier::new)
     );
     // Our extra properties.
     private final Item item;
 
     // First constructor parameter is the list of conditions. The rest is our extra properties.
-    public ModLootModifier(LootItemCondition[] conditions, Item item) {
+    public ChestLootModifier(LootItemCondition[] conditions, Item item) {
         super(conditions);
         this.item = item;
     }
 
     // Return our codec here.
     @Override
-    public MapCodec<ModLootModifier> codec() {
+    public MapCodec<ChestLootModifier> codec() {
         return CODEC;
     }
 

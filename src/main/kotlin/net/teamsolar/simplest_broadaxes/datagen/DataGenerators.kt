@@ -22,9 +22,14 @@ object DataGenerators {
         generator.add(ModItemModelProvider(packOutput, existingFileHelper))
         val blockTagGenerator = ModBlockTagGenerator(packOutput, lookupProvider, existingFileHelper)
             .also{generator.add(it)}
+        val datapackProvider = ModDatapackProvider(packOutput, lookupProvider)
+
         generator.add(ModItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper))
+        // Must pass in our own lookupProvider or else datagen won't know where to find our enchantment in registries... apparently
+        generator.add(ModEnchantmentTagsProvider(packOutput, datapackProvider.registryProvider, existingFileHelper))
         generator.add(ModRecipeProvider(packOutput, lookupProvider))
         generator.add(ModGlobalLootModifierProvider(packOutput, lookupProvider))
         generator.add(ModDataMapProvider(packOutput, lookupProvider))
+        generator.add(datapackProvider)
     }
 }

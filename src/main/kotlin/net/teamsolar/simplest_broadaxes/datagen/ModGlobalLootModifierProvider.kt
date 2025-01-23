@@ -10,7 +10,7 @@ import net.neoforged.neoforge.common.data.GlobalLootModifierProvider
 import net.neoforged.neoforge.common.loot.LootTableIdCondition
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import net.teamsolar.simplest_broadaxes.item.ModItems
-import net.teamsolar.simplest_broadaxes.loot.ModLootModifier
+import net.teamsolar.simplest_broadaxes.loot.ChestLootModifier
 import java.util.concurrent.CompletableFuture
 
 class ModGlobalLootModifierProvider(output: PackOutput, completableFuture: CompletableFuture<HolderLookup.Provider?>) :
@@ -62,8 +62,8 @@ class ModGlobalLootModifierProvider(output: PackOutput, completableFuture: Compl
         return nameMatcher.matchEntire(key)!!.groupValues[1]
     }
 
-    private fun toExistingLootPoolWithChance(location: ResourceLocation, chance: Float, item: Item): ModLootModifier {
-        return ModLootModifier(
+    private fun toExistingLootPoolWithChance(location: ResourceLocation, chance: Float, item: Item): ChestLootModifier {
+        return ChestLootModifier(
             arrayOf(
                 LootTableIdCondition.builder(location)
                     .and(
@@ -74,7 +74,7 @@ class ModGlobalLootModifierProvider(output: PackOutput, completableFuture: Compl
         )
     }
 
-    private fun toExistingLootPoolWithChance(location: String, chance: Float, item: Item): ModLootModifier {
+    private fun toExistingLootPoolWithChance(location: String, chance: Float, item: Item): ChestLootModifier {
         return toExistingLootPoolWithChance(ResourceLocation.withDefaultNamespace(location), chance, item)
     }
 }

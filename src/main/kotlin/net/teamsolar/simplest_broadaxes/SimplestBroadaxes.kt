@@ -16,6 +16,7 @@ import net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent
 import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent
 import net.neoforged.neoforge.event.server.ServerStartingEvent
+import net.teamsolar.simplest_broadaxes.enchantment.ModEnchantments
 import net.teamsolar.simplest_broadaxes.item.BroadaxeItem
 import net.teamsolar.simplest_broadaxes.item.ModItems
 import net.teamsolar.simplest_broadaxes.loot.ModLootModifiers
@@ -60,6 +61,7 @@ class SimplestBroadaxes {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC)
 
         ModLootModifiers.register(modEventBus)
+        ModEnchantments.register()
 
         // Default config screen
         Config.registerConfig(modContainer)
