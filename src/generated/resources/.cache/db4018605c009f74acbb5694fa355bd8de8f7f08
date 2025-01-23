@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-22T19:44:17.6103736	Global Loot Modifiers : simplest_broadaxes
+// 1.21.1	2025-01-23T11:39:38.8409893	Global Loot Modifiers : simplest_broadaxes
 a1febef4b07721412fff9e2ef11b6ba81b285803 data/neoforge/loot_modifiers/global_loot_modifiers.json
 7f6c447b2def010a1b6dd93b3b9006deff91c645 data/simplest_broadaxes/loot_modifiers/broadaxe_smithing_template_in_village_desert_house.json
 7a002e1b0871916f9d305569085989a1d3b70341 data/simplest_broadaxes/loot_modifiers/broadaxe_smithing_template_in_village_plains_house.json
