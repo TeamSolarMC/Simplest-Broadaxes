@@ -1,0 +1,19 @@
+{
+  "item.simplest_broadaxes.wooden_broadaxe": "Wooden Broadaxe",
+  "item.simplest_broadaxes.stone_broadaxe": "Stone Broadaxe",
+  "item.simplest_broadaxes.iron_broadaxe": "Iron Broadaxe",
+  "item.simplest_broadaxes.golden_broadaxe": "Golden Broadaxe",
+  "item.simplest_broadaxes.diamond_broadaxe": "Diamond Broadaxe",
+  "item.simplest_broadaxes.netherite_broadaxe": "Netherite Broadaxe",
+
+  "item.simplest_broadaxes.broadaxe_smithing_template": "Smithing Template",
+  "item.simplest_broadaxes.broadaxe_smithing_template.applies_to": "Broadaxes & Axes",
+  "item.simplest_broadaxes.broadaxe_smithing_template.ingredients": "Material Blocks",
+  "item.simplest_broadaxes.broadaxe_smithing_template.upgrade_description": "Broadaxe Upgrade",
+  "item.simplest_broadaxes.broadaxe_smithing_template.base_slot_description": "Add a broadaxe or an axe",
+  "item.simplest_broadaxes.broadaxe_smithing_template.additions_slot_description": "Add an appropriate material block",
+
+  "simplest_broadaxes.configuration.broadaxeMiningSpeedModifier": "Mining Speed Multiplier",
+  "simplest_broadaxes.configuration.broadaxeBlocksPerTick": "Blocks felled per tick",
+  "simplest_broadaxes.configuration.broadaxeBlocksPerSwing": "Blocks felled per swing"
+}
