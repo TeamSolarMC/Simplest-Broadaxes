@@ -53,7 +53,6 @@ class SimplestBroadaxes {
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this)
-
         // Register the item to a creative tab
         modEventBus.addListener(::addCreative)
 
@@ -65,6 +64,9 @@ class SimplestBroadaxes {
 
         // Default config screen
         Config.registerConfig(modContainer)
+
+        // NeoForge.EVENT_BUS.addListener(ModBlockBreakEventJava::onBlockBreak)
+        // NeoForge.EVENT_BUS.addListener(ModWanderingTraderEvent2::wanderingVillagerTrade)
     }
 
     private fun commonSetup(event: FMLCommonSetupEvent) {

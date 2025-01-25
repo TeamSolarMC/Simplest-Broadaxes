@@ -17,7 +17,7 @@ import net.teamsolar.simplest_broadaxes.item.ModItems
 object ModWanderingTraderEvent {
     @SubscribeEvent
     fun wanderingVillagerTrade(event: WandererTradesEvent) {
-        SimplestBroadaxes.LOGGER.info("Wandering trader event")
+        // SimplestBroadaxes.LOGGER.info("Wanderer Trades Event on Kotlin")
         event.rareTrades.add(ItemListing { pTrader: Entity?, pRandom: RandomSource? ->
             MerchantOffer(
                 ItemCost(Items.EMERALD, 12),

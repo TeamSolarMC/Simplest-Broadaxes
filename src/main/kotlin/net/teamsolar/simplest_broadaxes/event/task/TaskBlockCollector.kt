@@ -46,7 +46,7 @@ interface TaskBlockCollector {
         return list
     }
 
-    fun adjacentPositions(pos: BlockPos): List<BlockPos> {
+    private fun adjacentPositions(pos: BlockPos): List<BlockPos> {
         val list = mutableListOf<BlockPos>()
         for(x in -1 .. 1) {
             for(y in -1 .. 1) {
