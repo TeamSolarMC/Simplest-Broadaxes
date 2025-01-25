@@ -55,7 +55,7 @@ object ModItems {
     )
     val IRON_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
         "iron_broadaxe",
-        broadaxeSupplier(Tiers.IRON, durability = 750, attackDamageModifier = 8.0f, attackSpeed = -3.3f)
+        broadaxeSupplier(Tiers.IRON, durability = 750, attackDamageModifier = 7.0f, attackSpeed = -3.3f)
     )
     val GOLDEN_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
         "golden_broadaxe",

@@ -60,6 +60,17 @@ class BroadaxeItem(tier: Tier, properties: Properties) : DiggerItemWithoutDurabi
         }
     }
 
+    fun getTrimmingLevel(itemStack: ItemStack): Int {
+        var myInt = 0
+        EnchantmentHelper.runIterationOnItem(itemStack, {enchantmentHolder, enchantLevel ->
+            if(enchantmentHolder.`is` (ModEnchantments.BROADAXE_ENCHANTMENT)) {
+                myInt += enchantLevel
+            }
+        })
+        return myInt
+    }
+
+    // Used for implementation of axe stripping, waxing off, and scraping
     fun useOnWithoutRecursion(context: UseOnContext, originalItem: Item) {
         // Does not return an interaction result, but passes the UseOnContext to requisite blocks when they are modified
         // Does nothing on air
@@ -125,15 +136,6 @@ class BroadaxeItem(tier: Tier, properties: Properties) : DiggerItemWithoutDurabi
         }
     }
 
-    fun getTrimmingLevel(itemStack: ItemStack): Int {
-        var myInt = 0
-        EnchantmentHelper.runIterationOnItem(itemStack, {enchantmentHolder, enchantLevel ->
-            if(enchantmentHolder.`is` (ModEnchantments.BROADAXE_ENCHANTMENT)) {
-                myInt += enchantLevel
-            }
-        })
-        return myInt
-    }
 
     fun getSurroundingBlocks(pos: BlockPos, facing: Direction): List<BlockPos> {
         val list = mutableListOf<BlockPos>()
@@ -164,6 +166,10 @@ class BroadaxeItem(tier: Tier, properties: Properties) : DiggerItemWithoutDurabi
         return list
     }
 
+    override fun canPerformAction(stack: ItemStack, itemAbility: ItemAbility): Boolean {
+        return ItemAbilities.DEFAULT_AXE_ACTIONS.contains(itemAbility)
+    }
+
     fun getSurroundingBlocks(context: UseOnContext): List<BlockPos> {
         return getSurroundingBlocks(context.clickedPos, context.clickedFace)
     }
@@ -174,9 +180,6 @@ class BroadaxeItem(tier: Tier, properties: Properties) : DiggerItemWithoutDurabi
         return super.getDestroySpeed(stack, state) * miningSpeedModifier
     }
 
-    override fun canPerformAction(stack: ItemStack, itemAbility: ItemAbility): Boolean {
-        return ItemAbilities.DEFAULT_AXE_ACTIONS.contains(itemAbility)
-    }
 
     val mineableBlocks: TagKey<Block> = ModTagBlocks.FELLABLE_BLOCK
     val secondaryMineableBlocks: TagKey<Block> = ModTagBlocks.SECONDARY_FELLABLE_BLOCK
