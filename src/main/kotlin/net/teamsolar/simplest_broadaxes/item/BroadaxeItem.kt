@@ -174,10 +174,12 @@ class BroadaxeItem(tier: Tier, properties: Properties) : DiggerItemWithoutDurabi
         return getSurroundingBlocks(context.clickedPos, context.clickedFace)
     }
 
-    val miningSpeedModifier = 0.4f
 
+    val miningSpeedModifier = 0.4f
     override fun getDestroySpeed(stack: ItemStack, state: BlockState): Float {
-        return super.getDestroySpeed(stack, state) * miningSpeedModifier
+        return super.getDestroySpeed(stack, state).also {
+            SimplestBroadaxes.LOGGER.info("Base destroy speed: $it")
+        } * miningSpeedModifier
     }
 
 

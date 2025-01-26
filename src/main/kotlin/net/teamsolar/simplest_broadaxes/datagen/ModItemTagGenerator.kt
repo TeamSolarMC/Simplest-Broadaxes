@@ -28,9 +28,14 @@ class ModItemTagGenerator(
                 ModItems.DIAMOND_BROADAXE.get(),
                 ModItems.NETHERITE_BROADAXE.get()
             )
+        // Sharpness enchantment
         tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
-        tag(ItemTags.MINING_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
+        // Efficiency enchantment
+        // tag(ItemTags.MINING_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
+        // Fortune & Silk Touch
         tag(ItemTags.MINING_LOOT_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
+        // Unbreaking, Mending, & Vanishing
+        // (by transitive relationship with the VANISHING_ENCHANTABLE item tag - see VanillaItemTagsProvider)
         tag(ItemTags.DURABILITY_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
     }
 
