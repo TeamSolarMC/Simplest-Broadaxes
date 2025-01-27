@@ -15,11 +15,6 @@ import net.neoforged.neoforge.common.ModConfigSpec
 object Config {
     private val BUILDER: ModConfigSpec.Builder = ModConfigSpec.Builder()
 
-    private val BROADAXE_MINING_SPEED_MODIFIER: ModConfigSpec.DoubleValue =
-        BUILDER.comment("What percentage of a vanilla axe's mining speed the broadaxe should be set to.")
-            .gameRestart()
-            .defineInRange("broadaxeMiningSpeedModifier", 0.5, 0.0, Double.MAX_VALUE)
-
     private val BROADAXE_BLOCKS_PER_TICK: ModConfigSpec.IntValue =
         BUILDER.comment("Number of log blocks that a broadaxe can fell in one tick (Lower -> Takes more ticks to fully fell a tree)")
             .comment("(Some interactions may not work as intended with lower # of blocks per tick)")
