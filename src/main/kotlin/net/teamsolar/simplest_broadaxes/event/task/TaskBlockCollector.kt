@@ -1,20 +1,20 @@
 package net.teamsolar.simplest_broadaxes.event.task
 
-import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerPlayer
-import net.minecraft.tags.TagKey
-import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.block.Block
+import net.minecraft.block.BlockState
+import net.minecraft.registry.tag.TagKey
+import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.World
 
 interface TaskBlockCollector {
     val primaryTags: TagKey<Block>
-    val level: Level
-    val player: ServerPlayer
+    val level: World
+    val player: ServerPlayerEntity
     val maxAdjacentBlocks: Int
 
     fun getBlocksToMine(position: BlockPos): MutableList<BlockPos> {
-        val blocks = getBlocksTagged(start = position.offset(0, 1, 0), ignore = position, selectedTags = listOf(primaryTags))
+        val blocks = getBlocksTagged(start = position.add(0, 1, 0), ignore = position, selectedTags = listOf(primaryTags))
         if(blocks.any { blockPos -> blockPos.y <= position.y } )
             return mutableListOf()
         else
@@ -24,7 +24,7 @@ interface TaskBlockCollector {
     fun getBlocksTagged(start: BlockPos, ignore: BlockPos? = null, selectedTags: List<TagKey<Block>>): List<BlockPos> {
         fun isInSelectedTags(state: BlockState): Boolean {
             for(tag in selectedTags) {
-                if(state.`is`(tag)) {
+                if(state.isIn(tag)) {
                     return true
                 }
             }
@@ -51,7 +51,7 @@ interface TaskBlockCollector {
         for(x in -1 .. 1) {
             for(y in -1 .. 1) {
                 for(z in -1.. 1) {
-                    val nextPos = pos.offset(x, y, z)
+                    val nextPos = pos.add(x, y, z)
                     if(nextPos != pos) {
                         list.add(nextPos)
                     }

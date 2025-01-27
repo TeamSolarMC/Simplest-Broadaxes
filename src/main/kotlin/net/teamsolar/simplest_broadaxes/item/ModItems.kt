@@ -1,46 +1,24 @@
 package net.teamsolar.simplest_broadaxes.item
 
-import net.minecraft.ChatFormatting
-import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.entity.EquipmentSlotGroup
-import net.minecraft.world.entity.ai.attributes.AttributeModifier
-import net.minecraft.world.entity.ai.attributes.Attributes
-import net.minecraft.world.item.Item
-import net.minecraft.world.item.SmithingTemplateItem
-import net.minecraft.world.item.Tier
-import net.minecraft.world.item.Tiers
-import net.minecraft.world.item.component.ItemAttributeModifiers
-import net.neoforged.bus.api.IEventBus
-import net.neoforged.neoforge.registries.DeferredItem
-import net.neoforged.neoforge.registries.DeferredRegister
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
+import net.minecraft.item.*
+
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
+import net.minecraft.registry.RegistryKey
+import net.minecraft.text.Text
+import net.minecraft.util.Formatting
+import net.minecraft.util.Identifier
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
-import java.util.function.Supplier
 
 object ModItems {
-    val ITEMS: DeferredRegister.Items = DeferredRegister.createItems(SimplestBroadaxes.MODID)
-
-    // Hammer durability will be 3x the durability of the vanilla pickaxe of the same tier.
-    /*
-        Supplier<BroadaxeItem> {
-            BroadaxeItem(
-                Tiers.WOOD,
-                Item.Properties().durability(177).attributes(
-                    DiggerItemWithoutDurability.createAttributes(
-                        Tiers.WOOD, 6.0f, -3.4f
-                    )
-                )
-            )
-        }
-     */
-    fun broadaxeSupplier(tier: Tier, durability: Int, attackDamageModifier: Float, attackSpeed: Float, additional: ((Item.Properties) -> Item.Properties)? = null) = Supplier<BroadaxeItem> {
-        BroadaxeItem(
+    fun broadaxeSupplier(tier: ToolMaterial, durability: Int, attackDamageModifier: Float, attackSpeed: Float, additional: ((Item.Settings) -> Item.Settings)? = null): BroadaxeItem {
+        return BroadaxeItem(
             tier,
-            Item.Properties().durability(durability).attributes(
-                DiggerItemWithoutDurability.createAttributes(
-                    tier, attackDamageModifier, attackSpeed
-                )
-            ).let{
+            attackDamageModifier,
+            attackSpeed,
+            Item.Settings().maxDamage(durability).let{
                 if(additional != null) {
                     additional(it)
                 } else {
@@ -49,57 +27,110 @@ object ModItems {
             }
         )
     }
-    val WOODEN_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
-        "wooden_broadaxe",
-        broadaxeSupplier(Tiers.WOOD, durability =  177, attackDamageModifier = 7.0f, attackSpeed = -3.4f)
+    /*val broadaxeItem = BroadaxeItem(
+        ToolMaterials.DIAMOND,
+        attackDamage = 6.0f,
+        attackSpeed = -3.2f,
+        Item.Settings().maxDamage(4683)
     )
-    val STONE_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
-        "stone_broadaxe",
-        broadaxeSupplier(Tiers.STONE, durability = 393, attackDamageModifier = 8.0f, attackSpeed = -3.4f)
+    .also {
+        Registry.register(
+            Registries.ITEM,
+            Identifier.of(SimplestBroadaxes.modid, "diamond_broadaxe"),
+            it
+        )
+    }*/
+    val WOODEN_BROADAXE = Registry.register(Registries.ITEM,
+        Identifier.of(SimplestBroadaxes.modid, "wooden_broadaxe"),
+        broadaxeSupplier(ToolMaterials.WOOD, durability = 177, attackDamageModifier = 7.0f, attackSpeed = -3.4f)
     )
-    val IRON_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
-        "iron_broadaxe",
-        broadaxeSupplier(Tiers.IRON, durability = 750, attackDamageModifier = 7.0f, attackSpeed = -3.3f)
+    val STONE_BROADAXE = Registry.register(Registries.ITEM,
+        Identifier.of(SimplestBroadaxes.modid, "stone_broadaxe"),
+        broadaxeSupplier(ToolMaterials.STONE, durability = 393, attackDamageModifier = 8.0f, attackSpeed = -3.4f)
     )
-    val GOLDEN_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
-        "golden_broadaxe",
-        broadaxeSupplier(Tiers.GOLD, durability = 96, attackDamageModifier = 7.0f, attackSpeed = -3.2f)
+    val IRON_BROADAXE = Registry.register(Registries.ITEM,
+        Identifier.of(SimplestBroadaxes.modid, "iron_broadaxe"),
+        broadaxeSupplier(ToolMaterials.IRON, durability = 750, attackDamageModifier = 7.0f, attackSpeed = -3.3f)
     )
-    val DIAMOND_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
-        "diamond_broadaxe",
-        broadaxeSupplier(Tiers.DIAMOND, durability = 4683, attackDamageModifier = 6.0f, attackSpeed = -3.2f)
+    val GOLDEN_BROADAXE = Registry.register(Registries.ITEM,
+        Identifier.of(SimplestBroadaxes.modid, "golden_broadaxe"),
+        broadaxeSupplier(ToolMaterials.GOLD, durability = 96, attackDamageModifier = 7.0f, attackSpeed = -3.2f)
     )
-    val NETHERITE_BROADAXE: DeferredItem<BroadaxeItem> = ITEMS.register<BroadaxeItem>(
-        "netherite_broadaxe",
-        broadaxeSupplier(Tiers.NETHERITE, durability = 6093, attackDamageModifier = 6.0f, attackSpeed = -3.2f) {
-            it.fireResistant()
-        }
+    val DIAMOND_BROADAXE = Registry.register(Registries.ITEM,
+        Identifier.of(SimplestBroadaxes.modid, "diamond_broadaxe"),
+        broadaxeSupplier(ToolMaterials.DIAMOND, durability = 4683, attackDamageModifier = 6.0f, attackSpeed = -3.2f)
     )
-    val BROADAXE_SMITHING_TEMPLATE: DeferredItem<SmithingTemplateItem> = ITEMS.register<SmithingTemplateItem>(
-        "broadaxe_smithing_template",
-        Supplier<SmithingTemplateItem> {
-            SmithingTemplateItem(
-                Component.translatable("item.simplest_broadaxes.broadaxe_smithing_template.applies_to")
-                    .withStyle(ChatFormatting.BLUE),  // DESCRIPTION_FORMAT
-                Component.translatable("item.simplest_broadaxes.broadaxe_smithing_template.ingredients")
-                    .withStyle(ChatFormatting.BLUE),  // DESCRIPTION_FORMAT
-                Component.translatable("item.simplest_broadaxes.broadaxe_smithing_template.upgrade_description")
-                    .withStyle(ChatFormatting.GRAY),  // TITLE_FORMAT
-                Component.translatable("item.simplest_broadaxes.broadaxe_smithing_template.base_slot_description"),  // No formatting
-                Component.translatable("item.simplest_broadaxes.broadaxe_smithing_template.additions_slot_description"),  // No formatting
-                // Base slot empty icons
-                listOf<ResourceLocation>(
-                    ResourceLocation.withDefaultNamespace("item/empty_slot_axe"),
-                    ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, "item/empty_slot_broadaxe")
-                ),
-                listOf<ResourceLocation>(
-                    ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, "item/empty_slot_block")
-                ) // Additional slot empty icons
-            )
+    val NETHERITE_BROADAXE = Registry.register(Registries.ITEM,
+        Identifier.of(SimplestBroadaxes.modid, "netherite_broadaxe"),
+        broadaxeSupplier(ToolMaterials.NETHERITE, durability = 6093, attackDamageModifier = 7.0f, attackSpeed = -3.2f) {
+            it.fireproof()
         }
     )
 
-    fun register(eventBus: IEventBus) {
-        ITEMS.register(eventBus)
+    val broadaxes = listOf(
+        WOODEN_BROADAXE,
+        STONE_BROADAXE,
+        IRON_BROADAXE,
+        GOLDEN_BROADAXE,
+        DIAMOND_BROADAXE,
+        NETHERITE_BROADAXE
+    )
+
+    val BROADAXE_SMITHING_TEMPLATE = Registry.register(Registries.ITEM,
+        Identifier.of(SimplestBroadaxes.modid, "broadaxe_smithing_template"),
+        SmithingTemplateItem(
+            Text.translatable("item.simplest_broadaxes.broadaxe_smithing_template.applies_to")
+                .formatted(Formatting.BLUE),  // DESCRIPTION_FORMAT
+            Text.translatable("item.simplest_broadaxes.broadaxe_smithing_template.ingredients")
+                .formatted(Formatting.BLUE),  // DESCRIPTION_FORMAT
+            Text.translatable("item.simplest_broadaxes.broadaxe_smithing_template.upgrade_description")
+                .formatted(Formatting.GRAY),  // TITLE_FORMAT
+            Text.translatable("item.simplest_broadaxes.broadaxe_smithing_template.base_slot_description"),  // No formatting
+            Text.translatable("item.simplest_broadaxes.broadaxe_smithing_template.additions_slot_description"),  // No formatting
+            // Base slot empty icons
+            listOf(
+                Identifier.of("minecraft", "item/empty_slot_axe"),
+                Identifier.of(SimplestBroadaxes.modid, "item/empty_slot_broadaxe")
+            ),
+            listOf(
+                Identifier.of(SimplestBroadaxes.modid, "item/empty_slot_block")
+            ).toList() // Additional slot empty icons
+        ))
+    inline fun RegistryKey<ItemGroup>.modify(crossinline callback: FabricItemGroupEntries.() -> Unit) {
+        val group = RegistryKey.of(Registries.ITEM_GROUP.key, this.value)
+        ItemGroupEvents.modifyEntriesEvent(group).register{
+            itemGroupEntries -> itemGroupEntries.callback()
+        }
+    }
+    fun initialize() {
+        /*val toolsGroup = RegistryKey.of(Registries.ITEM_GROUP.key, ItemGroups.TOOLS.value)
+        ItemGroupEvents.modifyEntriesEvent(toolsGroup).register{
+            itemGroupEntries ->
+            for(item in broadaxes) {
+                itemGroupEntries.add(item)
+            }
+        }
+        val combatGroup = RegistryKey.of(Registries.ITEM_GROUP.key, ItemGroups.COMBAT.value)
+        ItemGroupEvents.modifyEntriesEvent(combatGroup).register{
+            itemGroupEntries ->
+            for(item in broadaxes) {
+                itemGroupEntries.add(item)
+            }
+        }*/
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register{
+            for(item in broadaxes) {
+                it.add(item)
+            }
+        }
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register{
+            for(item in broadaxes) {
+                it.add(item)
+            }
+        }
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register{
+            it.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, BROADAXE_SMITHING_TEMPLATE)
+        }
+
+        SimplestBroadaxes.logger.info("Items registered")
     }
 }
