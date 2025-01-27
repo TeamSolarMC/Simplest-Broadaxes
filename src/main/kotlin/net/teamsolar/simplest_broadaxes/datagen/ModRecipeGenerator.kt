@@ -2,24 +2,23 @@ package net.teamsolar.simplest_broadaxes.datagen
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
-import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder
-import net.minecraft.data.server.recipe.RecipeJsonProvider
-import net.minecraft.data.server.recipe.RecipeProvider
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
-import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder
+import net.minecraft.data.server.recipe.*
 import net.minecraft.item.Item
 import net.minecraft.item.Items
 import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.Registries
+import net.minecraft.registry.RegistryWrapper
 import net.minecraft.registry.tag.ItemTags
 import net.minecraft.util.Identifier
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import net.teamsolar.simplest_broadaxes.item.ModItems
-import java.util.function.Consumer
+import java.util.concurrent.CompletableFuture
 
-class ModRecipeGenerator(generator: FabricDataOutput): FabricRecipeProvider(generator) {
-    override fun generate(exporter: Consumer<RecipeJsonProvider>) {
+class ModRecipeGenerator(generator: FabricDataOutput,
+                         registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>
+): FabricRecipeProvider(generator, registriesFuture) {
+    override fun generate(exporter: RecipeExporter) {
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BROADAXE_SMITHING_TEMPLATE)
             .pattern("ABA")
             .pattern("ACA")
@@ -102,7 +101,7 @@ class ModRecipeGenerator(generator: FabricDataOutput): FabricRecipeProvider(gene
         return Registries.ITEM.getKey(item).get().value.path
     }
 
-    private fun broadaxeSmithingRecipe(base: Ingredient, additional: Ingredient, outputItem: Item, output: Consumer<RecipeJsonProvider>) {
+    private fun broadaxeSmithingRecipe(base: Ingredient, additional: Ingredient, outputItem: Item, output: RecipeExporter) {
         SmithingTransformRecipeJsonBuilder.create(
             Ingredient.ofItems(ModItems.BROADAXE_SMITHING_TEMPLATE),
             base,
@@ -120,7 +119,7 @@ class ModRecipeGenerator(generator: FabricDataOutput): FabricRecipeProvider(gene
             )
     }
 
-    private fun broadaxeUpgradeRecipe(base: Ingredient, additional: Ingredient, outputItem: Item, exporter: Consumer<RecipeJsonProvider>) {
+    private fun broadaxeUpgradeRecipe(base: Ingredient, additional: Ingredient, outputItem: Item, exporter: RecipeExporter) {
         SmithingTransformRecipeJsonBuilder.create(
             Ingredient.ofItems(ModItems.BROADAXE_SMITHING_TEMPLATE),
             base,
@@ -135,7 +134,7 @@ class ModRecipeGenerator(generator: FabricDataOutput): FabricRecipeProvider(gene
             )
     }
 
-    private fun basicBlastingAndSmeltingRecipe(input: Item, outputItem: Item, exporter: Consumer<RecipeJsonProvider>) {
+    private fun basicBlastingAndSmeltingRecipe(input: Item, outputItem: Item, exporter: RecipeExporter) {
         val unqualifiedItemName = getItemName(input)
         CookingRecipeJsonBuilder.createBlasting(
             Ingredient.ofItems(input),

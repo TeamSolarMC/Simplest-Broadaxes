@@ -2,6 +2,7 @@ package net.teamsolar.simplest_broadaxes.event.task
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContextParameterSet
 import net.minecraft.loot.context.LootContextParameters
@@ -71,7 +72,7 @@ open class TreeFellTask(level: World, player: ServerPlayerEntity, position: Bloc
     }
     open fun damageBroadaxeIfEquipped(blockState: BlockState) {
         val itemStack = player.mainHandStack
-        itemStack.damage(1, player.random, player)
+        itemStack.damage(1, player, EquipmentSlot.MAINHAND)
     }
     protected fun transferItemStacks(stackFrom: ItemStack, stackTo: ItemStack) {
         // Refer to: Shift+click behavior from AbstractContainerMenu (moveItemStackTo)
@@ -110,7 +111,7 @@ open class TreeFellTask(level: World, player: ServerPlayerEntity, position: Bloc
                     )
                     for(item in itemsFromBlock) {
                         for(presentItemStack in listOfItemsToMove) {
-                            if(!presentItemStack.isEmpty && ItemStack.canCombine(item, presentItemStack)) {
+                            if(!presentItemStack.isEmpty && ItemStack.areEqual(item, presentItemStack)) {
                                 transferItemStacks(item, presentItemStack)
                             }
                         }

@@ -5,13 +5,14 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.teamsolar.simplest_broadaxes.item.ModItems
 import net.minecraft.village.TradeOffer;
+import net.minecraft.village.TradedItem
 
 object ModCustomTrades {
     fun registerCustomTrades() {
         TradeOfferHelper.registerWanderingTraderOffers(2) {
             it.add{
                 entity, random -> TradeOffer(
-                    ItemStack(Items.EMERALD, 12),
+                    TradedItem(Items.EMERALD, 12),
                     ItemStack(ModItems.BROADAXE_SMITHING_TEMPLATE, 1),
 1, 2, 0.2f
                 )

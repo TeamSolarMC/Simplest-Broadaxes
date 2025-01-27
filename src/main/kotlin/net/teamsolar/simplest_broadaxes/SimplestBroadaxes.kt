@@ -2,16 +2,10 @@ package net.teamsolar.simplest_broadaxes
 
 import eu.midnightdust.lib.config.MidnightConfig
 import net.fabricmc.api.ModInitializer
-import net.fabricmc.fabric.api.event.world.WorldTickCallback
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.registry.FuelRegistry
-import net.minecraft.enchantment.Enchantment
-import net.minecraft.registry.Registries
-import net.minecraft.registry.Registry
-import net.minecraft.util.Identifier
-import net.minecraft.world.tick.WorldTickScheduler
-import net.teamsolar.simplest_broadaxes.datagen.ModLootTableModifiers
+import net.teamsolar.simplest_broadaxes.loot.ModLootTableModifiers
 import net.teamsolar.simplest_broadaxes.enchantment.ModEnchantments
-import net.teamsolar.simplest_broadaxes.enchantment.TrimmingEnchantment
 import net.teamsolar.simplest_broadaxes.event.ModCustomTrades
 import net.teamsolar.simplest_broadaxes.item.BroadaxeItem
 import net.teamsolar.simplest_broadaxes.item.ModItems
@@ -36,7 +30,7 @@ object SimplestBroadaxes : ModInitializer {
 
 		FuelRegistry.INSTANCE.add(ModItems.WOODEN_BROADAXE, 200)
 
-		WorldTickCallback.EVENT.register(BroadaxeItem.tickEvent::onLevelTick)
+		ServerTickEvents.START_WORLD_TICK.register(BroadaxeItem.tickEvent::onLevelTick)
 		logger.info("Hello Fabric world!")
 	}
 }

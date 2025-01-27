@@ -1,6 +1,6 @@
-package net.teamsolar.simplest_broadaxes.datagen
+package net.teamsolar.simplest_broadaxes.loot
 
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents
 import net.minecraft.loot.LootPool
 import net.minecraft.loot.condition.RandomChanceLootCondition
 import net.minecraft.loot.entry.ItemEntry
@@ -18,8 +18,10 @@ object ModLootTableModifiers {
 
     fun modifyLootTables() {
         val smithingTemplate = ModItems.BROADAXE_SMITHING_TEMPLATE
+
         LootTableEvents.MODIFY.register {
-            resourceManager, lootManager, id, tableBuilder, source ->
+            registryKey, tableBuilder, source, wrapperLookup ->
+            val id = registryKey.value
             if(matchHouseType(id.path) != null) {
                 val poolBuilder = LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f))
                     .conditionally(RandomChanceLootCondition.builder(0.15f))
@@ -39,6 +41,28 @@ object ModLootTableModifiers {
                 tableBuilder.pool(poolBuilder.build())
             }
         }
+
+        /*LootTableEvents.MODIFY.register {
+            resourceManager, lootManager, id, tableBuilder, source ->
+            if(matchHouseType(id.path) != null) {
+                val poolBuilder = LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f))
+                    .conditionally(RandomChanceLootCondition.builder(0.15f))
+                    .with(ItemEntry.builder(smithingTemplate))
+                    .apply(
+                        SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build()
+                    )
+                tableBuilder.pool(poolBuilder.build())
+            }
+            if(higherChanceChests[id.path] != null) {
+                val poolBuilder = LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f))
+                    .conditionally(RandomChanceLootCondition.builder(higherChanceChests[id.path]!!))
+                    .with(ItemEntry.builder(smithingTemplate))
+                    .apply(
+                        SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build()
+                    )
+                tableBuilder.pool(poolBuilder.build())
+            }
+        }*/
     }
 
     private fun matchHouseType(key: String): String? {
