@@ -17,5 +17,10 @@
 
   "simplest_broadaxes.configuration.broadaxeBlocksPerTick": "Blocks felled per tick",
   "simplest_broadaxes.configuration.broadaxeBlocksPerSwing": "Blocks felled per swing",
-  "simplest_broadaxes.configuration.dropsFelledBlocks": "Drops felled blocks"
+  "simplest_broadaxes.configuration.dropsFelledBlocks": "Drops felled blocks",
+
+  "simplest_broadaxes.midnightconfig.title": "Simplest Broadaxes Config",
+  "simplest_broadaxes.midnightconfig.broadaxeBlocksPerTick": "Blocks felled per tick",
+  "simplest_broadaxes.midnightconfig.broadaxeBlocksPerSwing": "Blocks felled per swing",
+  "simplest_broadaxes.midnightconfig.dropsFelledBlocks": "Drops felled blocks"
 }
