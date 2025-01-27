@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:iron_block"
+  },
+  "base": {
+    "item": "simplest_broadaxes:stone_broadaxe"
+  },
+  "result": {
+    "count": 1,
+    "id": "simplest_broadaxes:iron_broadaxe"
+  },
+  "template": {
+    "item": "simplest_broadaxes:broadaxe_smithing_template"
+  }
+}

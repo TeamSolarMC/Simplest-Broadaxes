@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "simplest_broadaxes:golden_broadaxe"
+  },
+  "result": {
+    "id": "minecraft:gold_nugget"
+  }
+}

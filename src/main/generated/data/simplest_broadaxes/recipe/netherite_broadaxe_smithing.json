@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "base": {
+    "item": "simplest_broadaxes:diamond_broadaxe"
+  },
+  "result": {
+    "count": 1,
+    "id": "simplest_broadaxes:netherite_broadaxe"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}
