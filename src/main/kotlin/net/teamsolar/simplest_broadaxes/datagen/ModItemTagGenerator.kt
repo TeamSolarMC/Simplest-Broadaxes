@@ -31,7 +31,7 @@ class ModItemTagGenerator(
         // Sharpness enchantment
         tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
         // Efficiency enchantment
-        // tag(ItemTags.MINING_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
+        tag(ItemTags.MINING_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
         // Fortune & Silk Touch
         tag(ItemTags.MINING_LOOT_ENCHANTABLE).addTag(ModTagItems.BROADAXES)
         // Unbreaking, Mending, & Vanishing

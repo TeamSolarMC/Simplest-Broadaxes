@@ -39,6 +39,14 @@ object ModItems {
             Item.Properties().durability(durability).attributes(
                 DiggerItemWithoutDurability.createAttributes(
                     tier, attackDamageModifier, attackSpeed
+                ).withModifierAdded(
+                    Attributes.MINING_EFFICIENCY,
+                    AttributeModifier(
+                        ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, "tool.broadaxe.efficiency"),
+                        1.0 - BroadaxeItem.miningSpeedModifier,
+                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    ),
+                    EquipmentSlotGroup.MAINHAND
                 )
             ).let{
                 if(additional != null) {

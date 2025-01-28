@@ -6,8 +6,8 @@
     "simplest_broadaxes:broadaxe_smithing_template_modifier_in_weaponsmith_chests",
     "simplest_broadaxes:broadaxe_smithing_template_in_village_plains_house",
     "simplest_broadaxes:broadaxe_smithing_template_modifier_in_armorer_chests",
-    "simplest_broadaxes:broadaxe_smithing_template_in_village_taiga_house",
-    "simplest_broadaxes:broadaxe_smithing_template_in_village_desert_house"
+    "simplest_broadaxes:broadaxe_smithing_template_in_village_desert_house",
+    "simplest_broadaxes:broadaxe_smithing_template_in_village_taiga_house"
   ],
   "replace": false
 }
