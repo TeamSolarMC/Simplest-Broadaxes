@@ -10,7 +10,6 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.SmithingTemplateItem
 import net.minecraft.world.item.Tier
 import net.minecraft.world.item.Tiers
-import net.minecraft.world.item.component.ItemAttributeModifiers
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredItem
 import net.neoforged.neoforge.registries.DeferredRegister
@@ -43,7 +42,7 @@ object ModItems {
                     Attributes.MINING_EFFICIENCY,
                     AttributeModifier(
                         ResourceLocation.fromNamespaceAndPath(SimplestBroadaxes.MODID, "tool.broadaxe.efficiency"),
-                        1.0 - BroadaxeItem.miningSpeedModifier,
+                        -(1.0 - BroadaxeItem.efficiencyStatModifier),
                         AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                     ),
                     EquipmentSlotGroup.MAINHAND
