@@ -8,10 +8,7 @@ import net.minecraft.item.ItemStack
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
 import net.teamsolar.simplest_broadaxes.item.BroadaxeItem
 
-class TrimmingEnchantment: Enchantment(Enchantments.UNBREAKING.rarity, EnchantmentTarget.DIGGER, arrayOf(EquipmentSlot.MAINHAND)), EnchantmentExclusiveTo {
-    override fun isExcludedItem(stack: ItemStack): Boolean {
-        return stack.item !is BroadaxeItem
-    }
+class TrimmingEnchantment: Enchantment(Enchantments.UNBREAKING.rarity, EnchantmentTarget.DIGGER, arrayOf(EquipmentSlot.MAINHAND)) {
     override fun isAcceptableItem(stack: ItemStack): Boolean {
         SimplestBroadaxes.logger.info("Is Acceptable Item Trimming Enchantment was called")
         return stack.item is BroadaxeItem

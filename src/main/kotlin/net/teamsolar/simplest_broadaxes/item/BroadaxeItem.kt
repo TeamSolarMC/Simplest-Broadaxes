@@ -1,6 +1,7 @@
 package net.teamsolar.simplest_broadaxes.item
 
 import com.google.common.collect.BiMap
+import com.google.common.collect.Multimap
 import net.minecraft.advancement.criterion.Criteria
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -8,7 +9,12 @@ import net.minecraft.block.Oxidizable
 import net.minecraft.enchantment.EfficiencyEnchantment
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
+import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.LivingEntity
+import net.minecraft.entity.attribute.EntityAttribute
+import net.minecraft.entity.attribute.EntityAttributeModifier
+import net.minecraft.entity.attribute.EntityAttributes
+import net.minecraft.entity.player.PlayerAbilities
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.*
 import net.minecraft.registry.tag.BlockTags
@@ -22,7 +28,6 @@ import net.minecraft.util.math.Direction
 import net.minecraft.world.World
 import net.minecraft.world.event.GameEvent
 import net.teamsolar.simplest_broadaxes.ModBlockTags
-import net.teamsolar.simplest_broadaxes.enchantment.ItemExclusiveTo
 import net.teamsolar.simplest_broadaxes.enchantment.ModEnchantments
 import net.teamsolar.simplest_broadaxes.event.ModLevelTickEvent
 import net.teamsolar.simplest_broadaxes.event.task.TreeFellAndTrimTask
@@ -32,7 +37,7 @@ import java.util.*
 
 
 open class BroadaxeItem
-    : MiningToolItem, ItemExclusiveTo {
+    : MiningToolItem, WorseAtMining {
     constructor(toolMaterial: ToolMaterial, attackDamage: Float, attackSpeed: Float, properties: Item.Settings) : super(attackDamage, attackSpeed, toolMaterial, BlockTags.AXE_MINEABLE, properties)
 
     override fun postMine(
@@ -188,14 +193,11 @@ open class BroadaxeItem
 
     val miningSpeedModifier = 0.4f
 
-    override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
+    override val efficiencyBonusMultiplier: Float
+        get() = miningSpeedModifier
+    /*override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
         return super.getMiningSpeedMultiplier(stack, state) * miningSpeedModifier
-    }
-
-    // disallow enchanting this item with efficiency
-    override fun isExcludedEnchantment(enchantment: Enchantment): Boolean {
-        return enchantment is EfficiencyEnchantment
-    }
+    }*/
 
     /*override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
         return super.getMiningSpeedMultiplier(stack, state).also {
