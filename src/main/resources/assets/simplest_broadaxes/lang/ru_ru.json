@@ -15,7 +15,8 @@
 
   "enchantment.simplest_broadaxes.trimming": "Обрезка",
 
-  "simplest_broadaxes.configuration.broadaxeBlocksPerTick": "Блоков, срубаемых за тик",
-  "simplest_broadaxes.configuration.broadaxeBlocksPerSwing": "Блоков, срубаемых за раз",
-  "simplest_broadaxes.configuration.dropsFelledBlocks": "Дропает срубленные блоки"
+  "simplest_broadaxes.midnightconfig.title": "Настройки Simplest Broadaxes",
+  "simplest_broadaxes.midnightconfig.broadaxeBlocksPerTick": "Блоков, срубаемых за тик",
+  "simplest_broadaxes.midnightconfig.broadaxeBlocksPerSwing": "Блоков, срубаемых за раз",
+  "simplest_broadaxes.midnightconfig.dropsFelledBlocks": "Дропает срубленные блоки"
 }
