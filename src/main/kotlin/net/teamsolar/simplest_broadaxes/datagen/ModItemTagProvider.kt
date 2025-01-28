@@ -21,8 +21,8 @@ class ModItemTagProvider(
         getOrCreateTagBuilder(ItemTags.SHARP_WEAPON_ENCHANTABLE)
             .addTag(ModItemTags.BROADAXES)
         // Efficiency enchantment
-        // getOrCreateTagBuilder(ItemTags.MINING_ENCHANTABLE)
-        //      .addTag(ModTagItems.BROADAXES)
+        getOrCreateTagBuilder(ItemTags.MINING_ENCHANTABLE)
+            .addTag(ModItemTags.BROADAXES)
         // Fortune & Silk Touch
         getOrCreateTagBuilder(ItemTags.MINING_LOOT_ENCHANTABLE)
             .addTag(ModItemTags.BROADAXES)

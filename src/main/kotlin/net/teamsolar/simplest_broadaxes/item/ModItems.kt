@@ -2,6 +2,9 @@ package net.teamsolar.simplest_broadaxes.item
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
+import net.minecraft.component.type.AttributeModifierSlot
+import net.minecraft.entity.attribute.EntityAttributeModifier
+import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.item.*
 
 import net.minecraft.registry.Registries
@@ -11,6 +14,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
+import net.teamsolar.simplest_broadaxes.item.MiningToolItemWithoutDurability.createAttributeModifiers
 
 object ModItems {
     fun broadaxeSupplier(tier: ToolMaterial, durability: Int, attackDamageModifier: Float, attackSpeed: Float, additional: ((Item.Settings) -> Item.Settings)? = null): BroadaxeItem {
@@ -18,7 +22,19 @@ object ModItems {
             tier,
             attackDamageModifier,
             attackSpeed,
-            Item.Settings().maxDamage(durability).let{
+            Item.Settings().maxDamage(durability)
+                .attributeModifiers(
+                    createAttributeModifiers(tier, attackDamageModifier, attackSpeed)
+                    .with(
+                        EntityAttributes.PLAYER_MINING_EFFICIENCY,
+                        EntityAttributeModifier(
+                            Identifier.of(SimplestBroadaxes.modid, "tool.broadaxe.efficiency"),
+                            (BroadaxeItem.miningSpeedModifier - 1.0f).toDouble(),
+                            EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                        ),
+                        AttributeModifierSlot.MAINHAND
+                    )
+                ).let{
                 if(additional != null) {
                     additional(it)
                 } else {

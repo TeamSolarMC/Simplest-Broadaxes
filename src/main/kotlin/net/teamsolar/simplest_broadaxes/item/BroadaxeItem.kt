@@ -29,9 +29,7 @@ import java.util.*
 
 open class BroadaxeItem
     : MiningToolItemWithoutDurability {
-    constructor(toolMaterial: ToolMaterial, attackDamage: Float, attackSpeed: Float, properties: Item.Settings) : super(toolMaterial, BlockTags.AXE_MINEABLE, properties.attributeModifiers(
-        createAttributeModifiers(toolMaterial, attackDamage, attackSpeed)
-    ))
+    constructor(toolMaterial: ToolMaterial, attackDamage: Float, attackSpeed: Float, properties: Item.Settings) : super(toolMaterial, BlockTags.AXE_MINEABLE, properties)
 
     override fun postMine(
         stack: ItemStack, world: World, state: BlockState, pos: BlockPos, miningEntity: LivingEntity
@@ -195,12 +193,6 @@ open class BroadaxeItem
         return myInt
     }
 
-    val miningSpeedModifier = 0.4f
-
-    override fun getMiningSpeed(stack: ItemStack, state: BlockState): Float {
-        return super.getMiningSpeed(stack, state) * miningSpeedModifier
-    }
-
     /*override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
         return super.getMiningSpeedMultiplier(stack, state).also {
             SimplestBroadaxes.logger.info("Base destroy speed: $it")
@@ -213,5 +205,6 @@ open class BroadaxeItem
 
     companion object {
         val tickEvent = ModLevelTickEvent()
+        val miningSpeedModifier = 0.4f
     }
 }
