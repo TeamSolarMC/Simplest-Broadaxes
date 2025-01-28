@@ -78,7 +78,7 @@ object ModItems {
     )
     val NETHERITE_BROADAXE = Registry.register(Registries.ITEM,
         Identifier.of(SimplestBroadaxes.modid, "netherite_broadaxe"),
-        broadaxeSupplier(ToolMaterials.NETHERITE, durability = 6093, attackDamageModifier = 7.0f, attackSpeed = -3.2f) {
+        broadaxeSupplier(ToolMaterials.NETHERITE, durability = 6093, attackDamageModifier = 6.0f, attackSpeed = -3.2f) {
             it.fireproof()
         }
     )
