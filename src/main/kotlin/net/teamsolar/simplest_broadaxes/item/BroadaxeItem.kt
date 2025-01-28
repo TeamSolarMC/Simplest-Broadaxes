@@ -185,7 +185,7 @@ class BroadaxeItem(tier: Tier, properties: Properties) : DiggerItemWithoutDurabi
     val secondaryMineableBlocks: TagKey<Block> = ModTagBlocks.SECONDARY_FELLABLE_BLOCK
 
     companion object {
-        val efficiencyStatModifier = 0.4f
+        val efficiencyStatModifier = 0.2f
         val tickEvent = ModLevelTickEvent()
     }
 }
