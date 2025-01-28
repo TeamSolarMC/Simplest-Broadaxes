@@ -103,6 +103,9 @@ open class BroadaxeItem
         val world = context.world
         val blockPos = context.blockPos
         val playerEntity = context.player
+        if(AxeUtils.shouldCancelStripAttempt(context)) {
+            return ActionResult.PASS
+        }
         val blockState = world.getBlockState(blockPos)
         val strippedState: Optional<BlockState> = AxeUtils.getStrippedState(blockState)
         val scrapedState = Oxidizable.getDecreasedOxidationState(blockState)

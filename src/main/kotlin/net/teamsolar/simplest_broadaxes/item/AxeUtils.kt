@@ -4,8 +4,9 @@ import net.fabricmc.fabric.mixin.content.registry.AxeItemAccessor
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.PillarBlock
-import net.minecraft.item.AxeItem
 import net.minecraft.item.ItemUsageContext
+import net.minecraft.item.Items
+import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
@@ -14,6 +15,10 @@ import java.util.*
 
 class AxeUtils {
     companion object {
+        public fun shouldCancelStripAttempt(context: ItemUsageContext): Boolean {
+            val playerEntity = context.player
+            return context.hand == Hand.MAIN_HAND && playerEntity!!.offHandStack.isOf(Items.SHIELD) && !playerEntity.shouldCancelInteraction()
+        }
         public fun getStrippedState(state: BlockState): Optional<BlockState> {
             val STRIPPABLES = AxeItemAccessor.getStrippedBlocks()
             return Optional.ofNullable(STRIPPABLES[state.block]).map { block: Block ->
