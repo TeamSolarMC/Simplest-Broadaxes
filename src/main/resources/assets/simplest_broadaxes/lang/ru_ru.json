@@ -1,15 +1,21 @@
 {
-  "item.simplest_hammers.wooden_hammer": "Деревянный молот",
-  "item.simplest_hammers.stone_hammer": "Каменный молот",
-  "item.simplest_hammers.iron_hammer": "Железный молот",
-  "item.simplest_hammers.golden_hammer": "Золотой молот",
-  "item.simplest_hammers.diamond_hammer": "Алмазный молот",
-  "item.simplest_hammers.netherite_hammer": "Незеритовый молот",
+  "item.simplest_broadaxes.wooden_broadaxe": "Деревянный широтопор",
+  "item.simplest_broadaxes.stone_broadaxe": "Каменный широопор",
+  "item.simplest_broadaxes.iron_broadaxe": "Железный широтопор",
+  "item.simplest_broadaxes.golden_broadaxe": "Золотой широтопор",
+  "item.simplest_broadaxes.diamond_broadaxe": "Алмазный широопор",
+  "item.simplest_broadaxes.netherite_broadaxe": "Незеритовый широтопор",
 
-  "item.simplest_hammers.hammer_smithing_template": "Кузнечный шаблон",
-  "item.simplest_hammers.hammer_smithing_template.applies_to": "Молотам и киркам",
-  "item.simplest_hammers.hammer_smithing_template.ingredients": "Блоки материала",
-  "item.simplest_hammers.hammer_smithing_template.upgrade_description": "Улучшение молота",
-  "item.simplest_hammers.hammer_smithing_template.base_slot_description": "Поместите молот или кирку",
-  "item.simplest_hammers.hammer_smithing_template.additions_slot_description": "Поместите блок нужного материала"
+  "item.simplest_broadaxes.broadaxe_smithing_template": "Кузнечный шаблон",
+  "item.simplest_broadaxes.broadaxe_smithing_template.applies_to": "Широтопорам и топорам",
+  "item.simplest_broadaxes.broadaxe_smithing_template.ingredients": "Блоки материала",
+  "item.simplest_broadaxes.broadaxe_smithing_template.upgrade_description": "Улучшение широтопора",
+  "item.simplest_broadaxes.broadaxe_smithing_template.base_slot_description": "Поместите широтопор или топор",
+  "item.simplest_broadaxes.broadaxe_smithing_template.additions_slot_description": "Поместите блок нужного материала",
+
+  "enchantment.simplest_broadaxes.trimming": "Обрезка",
+
+  "simplest_broadaxes.configuration.broadaxeBlocksPerTick": "Блоков, срубаемых за тик",
+  "simplest_broadaxes.configuration.broadaxeBlocksPerSwing": "Блоков, срубаемых за раз",
+  "simplest_broadaxes.configuration.dropsFelledBlocks": "Дропает срубленные блоки"
 }

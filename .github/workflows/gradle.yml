@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "1.21.1" ]
+    branches: [ "1.21.1", "1.20.1-fabric", "1.21.1-fabric" ]
   pull_request:
-    branches: [ "1.21.1" ]
+    branches: [ "1.21.1", "1.20.1-fabric", "1.21.1-fabric" ]
 
 jobs:
   build:
