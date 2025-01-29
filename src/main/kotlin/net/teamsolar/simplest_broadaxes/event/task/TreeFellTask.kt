@@ -1,17 +1,25 @@
 package net.teamsolar.simplest_broadaxes.event.task
 
+import net.minecraft.Util
 import net.minecraft.core.BlockPos
 import net.minecraft.core.component.DataComponents
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
+import net.minecraft.tags.EnchantmentTags
 import net.minecraft.tags.TagKey
 import net.minecraft.world.entity.EquipmentSlot
+import net.minecraft.world.entity.animal.Bee
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.BeehiveBlock
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.entity.BeehiveBlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.storage.loot.LootParams
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
+import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.Vec3
 import net.teamsolar.simplest_broadaxes.Config
 import net.teamsolar.simplest_broadaxes.SimplestBroadaxes
@@ -92,6 +100,35 @@ open class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos):
             stackTo.count = k
         }
     }
+    fun triggerBlockSpecificDropLogic(blockPos: BlockPos, blockState: BlockState, params: LootParams.Builder) {
+        val blockEntity = params.getOptionalParameter(LootContextParams.BLOCK_ENTITY)
+        val tool: ItemStack = params.getParameter(LootContextParams.TOOL)
+        if(blockEntity is BeehiveBlockEntity && !EnchantmentHelper.hasTag(tool, EnchantmentTags.PREVENTS_BEE_SPAWNS_WHEN_MINING)) {
+            blockEntity.emptyAllLivingFromHive(player as Player, blockState, BeehiveBlockEntity.BeeReleaseStatus.EMERGENCY)
+            level.updateNeighbourForOutputSignal(blockPos, blockState.block)
+            angerNearbyBees(level, blockPos)
+        }
+    }
+
+    private fun angerNearbyBees(level: Level, pos: BlockPos) {
+        val aabb = AABB(pos).inflate(8.0, 6.0, 8.0)
+        val list = level.getEntitiesOfClass(Bee::class.java, aabb)
+        if (!list.isEmpty()) {
+            val list1 = level.getEntitiesOfClass(
+                Player::class.java, aabb
+            )
+            if (list1.isEmpty()) {
+                return
+            }
+            for (bee in list) {
+                if (bee.target == null) {
+                    val player = Util.getRandom(list1, level.random)
+                    bee.target = player
+                }
+            }
+        }
+    }
+
     var taskProgress = 0
     override fun progress() {
         SimplestBroadaxes.LOGGER.info("Broadaxe Task ($position) progress: $taskProgress (${blocksToMine.size} remaining blocks)")
@@ -101,16 +138,16 @@ open class TreeFellTask(level: Level, player: ServerPlayer, position: BlockPos):
             val pos = popFirstBreakableBlock()
             if(pos != null) {
                 val blockState = level.getBlockState(pos)
-                if(!deliversBlocks) {
-                    level.destroyBlock(pos, true, player)
-                } else {
-                    val itemsFromBlock = blockState.getDrops(
-                        LootParams.Builder(level as ServerLevel)
+                val lootParams = LootParams.Builder(level as ServerLevel)
                         .withParameter(LootContextParams.TOOL, player.mainHandItem)
                         .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.position))
                         .withOptionalParameter(LootContextParams.THIS_ENTITY, player)
                         .withOptionalParameter(LootContextParams.BLOCK_ENTITY, level.getBlockEntity(pos))
-                    )
+                triggerBlockSpecificDropLogic(pos, blockState, lootParams)
+                if(!deliversBlocks) {
+                    level.destroyBlock(pos, true, player)
+                } else {
+                    val itemsFromBlock = blockState.getDrops(lootParams)
                     for(item in itemsFromBlock) {
                         for(presentItemStack in listOfItemsToMove) {
                             if(!presentItemStack.isEmpty && ItemStack.isSameItemSameComponents(item, presentItemStack)) {
