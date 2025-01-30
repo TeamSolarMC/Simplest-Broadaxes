@@ -191,10 +191,8 @@ open class BroadaxeItem
         return level
     }
 
-    val miningSpeedModifier = 0.4f
 
-    override val efficiencyBonusMultiplier: Float
-        get() = miningSpeedModifier
+    override val efficiencyBonusMultiplier: Float = 0.2f
     override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
         return super.getMiningSpeedMultiplier(stack, state) * miningSpeedModifier
     }
@@ -210,6 +208,7 @@ open class BroadaxeItem
     val secondaryMineableBlocks: TagKey<Block> = ModBlockTags.SECONDARY_FELLABLE_BLOCK
 
     companion object {
+        val miningSpeedModifier = 0.51f
         val tickEvent = ModLevelTickEvent()
     }
 }
