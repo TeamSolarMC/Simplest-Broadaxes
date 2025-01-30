@@ -29,7 +29,7 @@ object ModItems {
                         EntityAttributes.PLAYER_MINING_EFFICIENCY,
                         EntityAttributeModifier(
                             Identifier.of(SimplestBroadaxes.modid, "tool.broadaxe.efficiency"),
-                            (BroadaxeItem.miningSpeedModifier - 1.0f).toDouble(),
+                            (BroadaxeItem.efficiencyStatModifier - 1.0f).toDouble(),
                             EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                         ),
                         AttributeModifierSlot.MAINHAND

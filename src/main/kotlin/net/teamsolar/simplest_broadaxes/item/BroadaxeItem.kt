@@ -202,7 +202,8 @@ open class BroadaxeItem
     val secondaryMineableBlocks: TagKey<Block> = ModBlockTags.SECONDARY_FELLABLE_BLOCK
 
     companion object {
+        val miningSpeedModifier = 0.51f
+        val efficiencyStatModifier = 0.2f
         val tickEvent = ModLevelTickEvent()
-        val miningSpeedModifier = 0.4f
     }
 }

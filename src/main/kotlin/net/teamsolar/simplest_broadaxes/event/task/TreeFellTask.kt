@@ -2,10 +2,13 @@ package net.teamsolar.simplest_broadaxes.event.task
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.block.entity.BeehiveBlockEntity
+import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContextParameterSet
 import net.minecraft.loot.context.LootContextParameters
+import net.minecraft.registry.tag.EnchantmentTags
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -90,6 +93,15 @@ open class TreeFellTask(level: World, player: ServerPlayerEntity, position: Bloc
             stackTo.count = k
         }
     }
+    fun triggerBlockSpecificDropLogic(blockPos: BlockPos, blockState: BlockState, params: LootContextParameterSet.Builder) {
+        val blockEntity = params.getOptional(LootContextParameters.BLOCK_ENTITY)
+        val tool: ItemStack = params.get(LootContextParameters.TOOL)
+        if(blockEntity is BeehiveBlockEntity && !EnchantmentHelper.hasAnyEnchantmentsIn(tool, EnchantmentTags.PREVENTS_BEE_SPAWNS_WHEN_MINING)) {
+            blockEntity.angerBees(player, blockState, BeehiveBlockEntity.BeeState.EMERGENCY)
+            level.updateNeighbors(blockPos, blockState.block)
+        }
+    }
+
     var taskProgress = 0
     override fun progress() {
         SimplestBroadaxes.logger.info("Broadaxe Task ($position) progress: $taskProgress (${blocksToMine.size} remaining blocks)")
@@ -99,16 +111,16 @@ open class TreeFellTask(level: World, player: ServerPlayerEntity, position: Bloc
             val pos = popFirstBreakableBlock()
             if(pos != null) {
                 val blockState = level.getBlockState(pos)
+                val lootContextParams = LootContextParameterSet.Builder(level as ServerWorld)
+                    .add(LootContextParameters.TOOL, player.mainHandStack)
+                    .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.position))
+                    .addOptional(LootContextParameters.THIS_ENTITY, player)
+                    .addOptional(LootContextParameters.BLOCK_ENTITY, level.getBlockEntity(pos))
+                triggerBlockSpecificDropLogic(pos, blockState, lootContextParams)
                 if(!deliversBlocks) {
                     level.breakBlock(pos, true, player)
                 } else {
-                    val itemsFromBlock = blockState.getDroppedStacks(
-                        LootContextParameterSet.Builder(level as ServerWorld)
-                            .add(LootContextParameters.TOOL, player.mainHandStack)
-                            .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.position))
-                            .addOptional(LootContextParameters.THIS_ENTITY, player)
-                            .addOptional(LootContextParameters.BLOCK_ENTITY, level.getBlockEntity(pos))
-                    )
+                    val itemsFromBlock = blockState.getDroppedStacks(lootContextParams)
                     for(item in itemsFromBlock) {
                         for(presentItemStack in listOfItemsToMove) {
                             if(!presentItemStack.isEmpty && ItemStack.areEqual(item, presentItemStack)) {
