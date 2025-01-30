@@ -6,6 +6,7 @@ import net.minecraft.advancement.criterion.Criteria
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Oxidizable
+import net.minecraft.client.item.TooltipContext
 import net.minecraft.enchantment.EfficiencyEnchantment
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
@@ -22,7 +23,9 @@ import net.minecraft.registry.tag.TagKey
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
+import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
+import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.World
@@ -196,6 +199,19 @@ open class BroadaxeItem
     override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
         return super.getMiningSpeedMultiplier(stack, state) * miningSpeedModifier
     }
+
+    /*override fun appendTooltip(
+        stack: ItemStack,
+        world: World?,
+        tooltip: MutableList<Text>,
+        context: TooltipContext?
+    ) {
+        fun Float.asPercentage(): String {
+            return String.format("%.0f%%", this * 100)
+        }
+        tooltip.add(Text.literal("${(efficiencyBonusMultiplier - 1.0f).asPercentage()} Mining Efficiency").formatted(Formatting.RED))
+        super.appendTooltip(stack, world, tooltip, context)
+    }*/
 
     /*override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
         return super.getMiningSpeedMultiplier(stack, state).also {
