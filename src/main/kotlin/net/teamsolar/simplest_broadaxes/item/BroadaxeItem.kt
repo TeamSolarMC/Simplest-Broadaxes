@@ -195,9 +195,9 @@ open class BroadaxeItem
 
     override val efficiencyBonusMultiplier: Float
         get() = miningSpeedModifier
-    /*override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
+    override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
         return super.getMiningSpeedMultiplier(stack, state) * miningSpeedModifier
-    }*/
+    }
 
     /*override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
         return super.getMiningSpeedMultiplier(stack, state).also {
