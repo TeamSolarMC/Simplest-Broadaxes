@@ -193,11 +193,9 @@ open class BroadaxeItem
         return myInt
     }
 
-    /*override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
-        return super.getMiningSpeedMultiplier(stack, state).also {
-            SimplestBroadaxes.logger.info("Base destroy speed: $it")
-        } * miningSpeedModifier
-    }*/
+    override fun getMiningSpeed(stack: ItemStack, state: BlockState): Float {
+        return super.getMiningSpeed(stack, state) * miningSpeedModifier
+    }
 
     // val effectiveBlocks = BlockTags.AXE_MINEABLE
     val mineableBlocks: TagKey<Block> = ModBlockTags.FELLABLE_BLOCK
