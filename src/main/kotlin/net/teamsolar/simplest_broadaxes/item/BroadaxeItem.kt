@@ -1,21 +1,11 @@
 package net.teamsolar.simplest_broadaxes.item
 
-import com.google.common.collect.BiMap
-import com.google.common.collect.Multimap
 import net.minecraft.advancement.criterion.Criteria
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Oxidizable
-import net.minecraft.client.item.TooltipContext
-import net.minecraft.enchantment.EfficiencyEnchantment
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
-import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.LivingEntity
-import net.minecraft.entity.attribute.EntityAttribute
-import net.minecraft.entity.attribute.EntityAttributeModifier
-import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.player.PlayerAbilities
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.*
 import net.minecraft.registry.tag.BlockTags
@@ -23,9 +13,7 @@ import net.minecraft.registry.tag.TagKey
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
-import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
-import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.World
@@ -213,11 +201,6 @@ open class BroadaxeItem
         super.appendTooltip(stack, world, tooltip, context)
     }*/
 
-    /*override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float {
-        return super.getMiningSpeedMultiplier(stack, state).also {
-            SimplestBroadaxes.logger.info("Base destroy speed: $it")
-        } * miningSpeedModifier
-    }*/
 
     // val effectiveBlocks = BlockTags.AXE_MINEABLE
     val mineableBlocks: TagKey<Block> = ModBlockTags.FELLABLE_BLOCK
