@@ -20,7 +20,7 @@ import java.util.function.Consumer
 
 class ModRecipeGenerator(generator: FabricDataOutput): FabricRecipeProvider(generator) {
     override fun generate(exporter: Consumer<RecipeJsonProvider>) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BROADAXE_SMITHING_TEMPLATE)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BROADAXE_SMITHING_TEMPLATE, 2)
             .pattern("ABA")
             .pattern("ACA")
             .pattern("AAA")
