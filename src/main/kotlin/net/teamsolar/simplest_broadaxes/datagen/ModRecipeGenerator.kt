@@ -19,7 +19,7 @@ class ModRecipeGenerator(generator: FabricDataOutput,
                          registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>
 ): FabricRecipeProvider(generator, registriesFuture) {
     override fun generate(exporter: RecipeExporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BROADAXE_SMITHING_TEMPLATE)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BROADAXE_SMITHING_TEMPLATE, 2)
             .pattern("ABA")
             .pattern("ACA")
             .pattern("AAA")
