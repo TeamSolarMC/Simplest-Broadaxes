@@ -3,7 +3,8 @@
 	"package": "net.teamsolar.simplest_broadaxes.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"PlayerMiningWorsenerMixin"
+		"PlayerMiningWorsenerMixin",
+		"EnchantmentHelperMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
