@@ -39,7 +39,13 @@ object Config {
     var dropsFelledBlocks: Boolean = true
 
     @SubscribeEvent
-    fun onLoad(event: ModConfigEvent) {
+    fun onLoad(event: ModConfigEvent.Loading) {
+        broadaxeBlocksPerTick = BROADAXE_BLOCKS_PER_TICK.get()
+        broadaxeBlocksPerSwing = BROADAXE_BLOCKS_PER_SWING.get()
+        dropsFelledBlocks = DROPS_FELLED_BLOCKS.get()
+    }
+    @SubscribeEvent
+    fun onReload(event: ModConfigEvent.Reloading) {
         broadaxeBlocksPerTick = BROADAXE_BLOCKS_PER_TICK.get()
         broadaxeBlocksPerSwing = BROADAXE_BLOCKS_PER_SWING.get()
         dropsFelledBlocks = DROPS_FELLED_BLOCKS.get()
