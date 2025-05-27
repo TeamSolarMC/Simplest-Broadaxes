@@ -2,6 +2,7 @@ package net.teamsolar.simplest_broadaxes
 
 import com.mojang.logging.LogUtils
 import net.minecraft.client.Minecraft
+import net.minecraft.client.gui.screens.Screen
 import net.minecraft.world.item.*
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.IEventBus
@@ -13,6 +14,8 @@ import net.neoforged.fml.config.ModConfig
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
 import net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent
+import net.neoforged.neoforge.client.gui.ConfigurationScreen
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent
 import net.neoforged.neoforge.event.server.ServerStartingEvent
@@ -57,13 +60,11 @@ class SimplestBroadaxes {
         modEventBus.addListener(::addCreative)
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC)
+        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC)
 
         ModLootModifiers.register(modEventBus)
         ModEnchantments.register()
 
-        // Default config screen
-        Config.registerConfig(modContainer)
 
         // NeoForge.EVENT_BUS.addListener(ModBlockBreakEventJava::onBlockBreak)
         // NeoForge.EVENT_BUS.addListener(ModWanderingTraderEvent2::wanderingVillagerTrade)
@@ -103,5 +104,18 @@ class SimplestBroadaxes {
     fun onServerStarting(event: ServerStartingEvent) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting")
+    }
+}
+
+@Mod(SimplestBroadaxes.MODID, dist = [Dist.CLIENT])
+class SimplestBroadaxesClient {
+    constructor(modEventBus: IEventBus, modContainer: ModContainer) {
+        // Default config screen
+        registerConfigScreen(modContainer, Config)
+    }
+    fun registerConfigScreen(modContainer: ModContainer, config: Config) {
+        modContainer.registerExtensionPoint(
+            IConfigScreenFactory::class.java,
+            IConfigScreenFactory { mod: ModContainer, parent: Screen -> ConfigurationScreen(mod, parent) })
     }
 }

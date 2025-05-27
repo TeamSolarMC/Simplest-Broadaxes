@@ -38,12 +38,6 @@ object Config {
     var broadaxeBlocksPerSwing: Int = 1000
     var dropsFelledBlocks: Boolean = true
 
-    fun registerConfig(modContainer: ModContainer) {
-        modContainer.registerExtensionPoint(
-            IConfigScreenFactory::class.java,
-            IConfigScreenFactory { mod: ModContainer, parent: Screen -> ConfigurationScreen(mod, parent) })
-    }
-
     @SubscribeEvent
     fun onLoad(event: ModConfigEvent) {
         broadaxeBlocksPerTick = BROADAXE_BLOCKS_PER_TICK.get()
